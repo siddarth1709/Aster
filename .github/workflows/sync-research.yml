@@ -1,0 +1,52 @@
+name: Sync daily AI research
+
+on:
+  schedule:
+    - cron: "17 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-research-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch and distill Hugging Face Daily Papers
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.LLM_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+          PAPER_LIMIT: "8"
+        run: python scripts/sync_daily_papers.py
+
+      - name: Publish feed to Streamlit static assets
+        run: |
+          mkdir -p static/data
+          cp public/data/dailypapers.json static/data/dailypapers.json
+
+      - name: Commit updated static feed
+        run: |
+          if git diff --quiet -- public/data/dailypapers.json static/data/dailypapers.json; then
+            echo "Daily paper feed is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/dailypapers.json static/data/dailypapers.json
+          git commit -m "chore: sync daily AI research [skip ci]"
+          git push

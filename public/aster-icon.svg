@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="shell" x1="18" y1="12" x2="110" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDF7FF"/>
+      <stop offset=".42" stop-color="#5BC7FF"/>
+      <stop offset="1" stop-color="#6574F5"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="28" y1="19" x2="99" y2="105" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#C3D8FF" stop-opacity=".24"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="7" y="7" width="114" height="114" rx="35" fill="#0C1423"/>
+  <rect x="13" y="13" width="102" height="102" rx="31" fill="url(#shell)"/>
+  <rect x="13.75" y="13.75" width="100.5" height="100.5" rx="30.25" stroke="url(#stroke)" stroke-width="1.5"/>
+  <path d="M64 31 97 96H79L72 81H56L49 96H31L64 31Z" fill="#07192D"/>
+  <path d="M64 51 57 68H71L64 51Z" fill="url(#shell)"/>
+  <g filter="url(#soft-glow)">
+    <circle cx="64" cy="76" r="3.5" fill="#F5FDFF"/>
+  </g>
+</svg>
