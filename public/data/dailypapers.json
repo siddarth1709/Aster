@@ -1,599 +1,683 @@
 {
-  "schema_version": 2,
-  "source": "ArXiv Atom Query Feed + Hugging Face Daily Papers (Live)",
-  "updated_at": "2026-10-25T13:43:43.268541+00:00",
-  "total_buffered": 10,
+  "schema_version": 1,
+  "source": "Hugging Face Daily Papers",
+  "updated_at": "2026-10-26T18:41:32+00:00",
+  "summary_provider": "Raw abstract fallback",
   "papers": [
     {
-      "id": "arxiv:2610.31671",
-      "arxiv_id": "2610.31671",
-      "title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
+      "id": "arxiv:2609.33439",
+      "arxiv_id": "2609.33439",
+      "title": "Raven: The Harness of Harnesses for Composable Agentic Intelligence",
       "authors": [
-        "Qiwen Gu",
-        "Xin Zhou",
-        "Xiwu Chen",
-        "Zhongyang Zhu",
-        "Zhuo Zhang"
+        "EverMind AI"
       ],
-      "category": "cs.CV · Spatial Reasoning & Geodesics",
-      "published_at": "2026-10-22T17:59:53Z",
-      "updated_at": "2026-10-22T17:59:53Z",
-      "landing_url": "https://arxiv.org/abs/2610.31671",
-      "pdf_url": "https://arxiv.org/pdf/2610.31671",
-      "discussion_url": "https://huggingface.co/papers/2610.31671",
-      "abstract": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control. In this paper, we introduce FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model. By seamlessly integrating heterogeneous inputs, ranging from sparse points to dense bounding boxes and masks, via gated adaptive modulation, FlexPart unlocks a powerful cross-modal synergy. We also propose an asymmetric geometric guidance mechanism that leverages strong spatial priors to align representations across granularities, improving geometric consistency and facilitating inter-task synergy. Under mask conditioning on PartVerseXL, FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10.5% relative to OmniPart, while maintaining competitive whole-mesh quality. The code can be found at https://github.com/Gucci233/FlexPart",
-      "summary_25_words": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of…",
+      "abstract": "As large language models advance, AI agents are moving beyond isolated, domain-specific tasks toward long-horizon, cross-domain workflows. This transition exposes two challenges: increasing harness complexity makes manual design difficult to scale, while tighter coupling to specific domains limits the generality of a single harness. The central question thus shifts from how to engineer a stronger harness for one domain to how to autonomously construct specialized harnesses, improve them through experience, and orchestrate them across domains. We introduce Raven, The Harness of Harnesses, an open-source multi-agent ecosystem that automatically constructs and evolves modular harnesses for specific models and domains, treating each executable model--harness pair as a composable unit of intelligence. To support an All-Domain Collaboration Network, its Host Agent decomposes goals, matches subtasks to specialized agents, coordinates execution dependencies, and integrates results, while a host archive and EverOS preserve experience across tasks and Skill Forge makes that experience available as reusable procedures. Our theory establishes sufficient conditions for such composition to expand reliable task coverage beyond that of the available individual agents under a shared resource budget. On complex and long-horizon tasks, Raven significantly outperforms the state-of-the-art agent systems, pushing the frontier of composable agentic intelligence.",
+      "category": "AI research",
       "keywords": [
-        "Spatial Reasoning & Geodesics",
-        "Reinforcement Learning",
-        "Agentic Reasoning"
+        "Agents & tools"
       ],
+      "upvotes": 711,
+      "published_at": "2026-09-26T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2609.33439",
+      "arxiv_url": "https://arxiv.org/abs/2609.33439",
+      "pdf_url": "https://arxiv.org/pdf/2609.33439",
+      "discussion_url": "https://huggingface.co/papers/2609.33439",
+      "tldr_20_words": "",
+      "summary_25_words": "As large language models advance, AI agents are moving beyond isolated, domain-specific tasks toward long-horizon, cross-domain workflows. This transition exposes two challenges: increasing harness complexity makes manual design difficult to scale, while tighter coupling to specific domains limits the generality of a single harness. The central question thus shifts from how to engineer a stronger harness for one domain to how to autonomously construct specialized harnesses, improve them through experience, and orchestrate them across domains. We introduce Raven, The Harness of Harnesses, an open-source multi-agent ecosystem that automatically constructs and evolves modular harnesses for specific models and domains, treating each executable model--harness pair as a composable unit of intelligence. To support an All-Domain Collaboration Network, its Host Agent decomposes goals, matches subtasks to specialized agents, coordinates execution dependencies, and integrates results, while a host archive and EverOS preserve experience across tasks and Skill Forge makes that experience available as reusable procedures. Our theory establishes sufficient conditions for such composition to expand reliable task coverage beyond that of the available individual agents under a shared resource budget. On complex and long-horizon tasks, Raven significantly outperforms the state-of-the-art agent systems, pushing the frontier of composable agentic intelligence.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Agents & tools"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Part CD by 16."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-        "gap": "Existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-        "metric": "FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31670",
-      "arxiv_id": "2610.31670",
-      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "id": "arxiv:2610.22471",
+      "arxiv_id": "2610.22471",
+      "title": "Has GPT-6-Astra Achieved Embodied Intelligence?",
       "authors": [
-        "Yunfei Xie",
-        "Howard H. Qian",
-        "Shiyi Lan",
-        "Kaiyu Hang",
-        "Chen Wei"
-      ],
-      "category": "cs.CV · Spatial Reasoning & Geodesics",
-      "published_at": "2026-10-22T17:59:51Z",
-      "updated_at": "2026-10-22T17:59:51Z",
-      "landing_url": "https://arxiv.org/abs/2610.31670",
-      "pdf_url": "https://arxiv.org/pdf/2610.31670",
-      "discussion_url": "https://huggingface.co/papers/2610.31670",
-      "abstract": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that as representations improve, different modalities such as vision and language converge toward a shared statistical model of reality. We ask whether motion trajectories form another such modality: as embodied models become more capable, should their sensory representations converge toward the structure of physical motion? To examine this, we propose Sensorimotor Alignment (), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion. We find that correlates positively with downstream robot task success across embodied model families, making it a low-cost offline proxy for prioritizing models before closed-loop evaluation. can also identify promising vision-language model (VLM) backbones even before costly fine-tuning into vision-language-action models (VLAs). Beyond this correlation, offers representation-level explanations for phenomena observed in VLAs and world action models (WAMs). With , we extend PRH to embodied models and make sensorimotor alignment empirically measurable, offering insight into why an embodied model succeeds beyond its closed-loop success rate.",
-      "summary_25_words": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that…",
-      "keywords": [
-        "Spatial Reasoning & Geodesics",
-        "Representation & Manifolds",
-        "Video & Visual Diffusion"
-      ],
-      "three_pillars": {
-        "core_breakthrough": "Sensorimotor Alignment (), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
-      },
-      "paper_idea": {
-        "pitch": "Sensorimotor Alignment , a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion.",
-        "gap": "Current approaches in Spatial Reasoning & Geodesics struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
-    },
-    {
-      "id": "arxiv:2610.31668",
-      "arxiv_id": "2610.31668",
-      "title": "Reading, Writing, Sharing, and Interacting with the World through Video",
-      "authors": [
-        "Shengqiong Wu",
-        "Meng Luo",
-        "Bobo Li",
+        "SenseNova",
+        "Joint Research Team",
+        "Zhongang Cai",
+        "Ziang Cao",
+        "Tailai Chen",
+        "Han Chong Chua",
+        "Linjun Dai",
+        "Hanming Deng",
+        "Hokin Deng",
+        "Haiwen Diao",
+        "Chenjing Ding",
+        "Weichen Fan",
+        "Xiao Fu",
+        "Zerui Gong",
+        "Chenyang Gu",
+        "Zexin He",
+        "Zhi Hou",
+        "Bo Li",
+        "Qinyue Li",
+        "Quanzhou Li",
+        "Xiaowan Li",
+        "Zhichao Liao",
+        "Dahua Lin",
+        "Zilong Lin",
+        "Bo Liu",
+        "Chunxiao Liu",
+        "Pengfei Liu",
+        "Tianqi Liu",
         "Ziwei Liu",
-        "Shuicheng Yan"
+        "Chen Change Loy",
+        "Lewei Lu",
+        "Jiapeng Luo",
+        "Yuexiao Ma",
+        "Liang Pan",
+        "Xingang Pan",
+        "Oscar Qian",
+        "Ziyi Shang",
+        "Yuyao Shao",
+        "Dawei Su",
+        "Dacheng Tao",
+        "Qingyi Tao",
+        "Quan Wang",
+        "Ruisi Wang",
+        "Xiaogang Wang",
+        "Ziyi Wang",
+        "Beichen Wen",
+        "Donghao Wu",
+        "Jiaxu Wu",
+        "Silei Wu",
+        "Xiaoming Wu",
+        "Zhonghua Wu",
+        "Hongcan Xiao",
+        "Weiye Xu",
+        "Atsushi Yamashita",
+        "Lei Yang",
+        "Zhe Yang",
+        "Baiqiao Yin",
+        "Wanqi Yin",
+        "Hanfei Zhao",
+        "Tianbo Zhong",
+        "Long Zhuo",
+        "Jing Zuo"
       ],
-      "category": "cs.CV · World Models & Simulation",
-      "published_at": "2026-10-22T17:59:50Z",
-      "updated_at": "2026-10-22T17:59:50Z",
-      "landing_url": "https://arxiv.org/abs/2610.31668",
-      "pdf_url": "https://arxiv.org/pdf/2610.31668",
-      "discussion_url": "https://huggingface.co/papers/2610.31668",
-      "abstract": "Video foundation models have advanced rapidly in understanding and generating visual sequences, while video world models seek to capture the underlying dynamics of the world they depict. Despite their different objectives, both concern the relationship between video observations and an evolving world. This survey adopts world modeling as a unifying lens for examining these developments. Viewing an observed video as a partial, lossy, and temporally ordered projection of a latent temporal world, we organize the literature around four complementary operations: reading infers world properties from observed video; writing synthesizes video from specified or learned world conditions; sharing integrates understanding and generation through common modeling mechanisms; and interacting predicts and updates world states under actions and evolving observations. This perspective distinguishes temporal coherence in observed or generated sequences from consistency in the underlying world state. Across tasks, representations, models, datasets, and benchmarks, we trace a shift in emphasis from clip-level recognition and perceptual fidelity toward persistent state, controllable evolution, physical and causal validity, and evaluation grounded in interaction and downstream decisions, and we distill the open challenges that follow.",
-      "summary_25_words": "Video foundation models have advanced rapidly in understanding and generating visual sequences, while video world models seek to capture the underlying dynamics of the world…",
+      "abstract": "GPT-6-Astra demonstrates a level of competence in robotic manipulation and navigation that challenges the conventional paradigm of building specialized models for individual tasks and embodiments. In this report, we ask not only how capable GPT-6-Astra is, but what its capabilities imply for the field. First, we probe the limits of standalone GPT-6-Astra. We conduct a large-scale evaluation across 12 representative benchmarks spanning tabletop manipulation, humanoids, mobile platforms, and dexterous hands. Under a unified protocol that allows in-context learning (ICL) from training-set demonstrations and substantially increases the number of execution steps, GPT-6-Astra achieves unprecedented performance (Fig. 1). Future research may focus on improving 1) the generality of ICL 2) cost and execution time, 3) physical-state verification, 4) recovery from irreversible failures, and 5) long-horizon preservation of progress. Second, we study the agentic harness for embodied control. We identify that close-loop coordination between a high-level \"System 2\" reasoner (i.e., GPT-6-Astra) and a low-level \"System 1\" controller (e.g., π0.5) is costly but effective. Third, we examine GPT-6-Astra on real-world deployment. Our experiments on 8 robot configurations reveal substantial gaps: 1) robot demonstrations required for ICL are expensive to collect, and 2) it is implausible to trade longer execution for higher success rates with physical constraints. Fourth, we envision the next generation of embodied benchmarks. We develop a prototype that 1) derives tasks from real-world needs, 2) provides no in-domain demonstrations, and 3) judges agents on a world clock that keeps running while they deliberate. Taken together, our results suggest that GPT-6-Astra has largely crossed the threshold of embodied competence, but not yet that of practical embodied intelligence.",
+      "category": "AI research",
       "keywords": [
-        "World Models & Simulation",
-        "Agentic Reasoning",
-        "Representation & Manifolds"
+        "Evaluation"
       ],
+      "upvotes": 481,
+      "published_at": "2026-10-14T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.22471",
+      "arxiv_url": "https://arxiv.org/abs/2610.22471",
+      "pdf_url": "https://arxiv.org/pdf/2610.22471",
+      "discussion_url": "https://huggingface.co/papers/2610.22471",
+      "tldr_20_words": "",
+      "summary_25_words": "GPT-6-Astra demonstrates a level of competence in robotic manipulation and navigation that challenges the conventional paradigm of building specialized models for individual tasks and embodiments. In this report, we ask not only how capable GPT-6-Astra is, but what its capabilities imply for the field. First, we probe the limits of standalone GPT-6-Astra. We conduct a large-scale evaluation across 12 representative benchmarks spanning tabletop manipulation, humanoids, mobile platforms, and dexterous hands. Under a unified protocol that allows in-context learning (ICL) from training-set demonstrations and substantially increases the number of execution steps, GPT-6-Astra achieves unprecedented performance (Fig. 1). Future research may focus on improving 1) the generality of ICL 2) cost and execution time, 3) physical-state verification, 4) recovery from irreversible failures, and 5) long-horizon preservation of progress. Second, we study the agentic harness for embodied control. We identify that close-loop coordination between a high-level \"System 2\" reasoner (i.e., GPT-6-Astra) and a low-level \"System 1\" controller (e.g., π0.5) is costly but effective. Third, we examine GPT-6-Astra on real-world deployment. Our experiments on 8 robot configurations reveal substantial gaps: 1) robot demonstrations required for ICL are expensive to collect, and 2) it is implausible to trade longer execution for higher success rates with physical constraints. Fourth, we envision the next generation of embodied benchmarks. We develop a prototype that 1) derives tasks from real-world needs, 2) provides no in-domain demonstrations, and 3) judges agents on a world clock that keeps running while they deliberate. Taken together, our results suggest that GPT-6-Astra has largely crossed the threshold of embodied competence, but not yet that of practical embodied intelligence.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Evaluation"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "Introduces novel methodology for reading, writing, sharing, and interacting with the world through video.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "Introduces novel methodology for reading, writing, sharing, and interacting with the world through video.",
-        "gap": "Current approaches in World Models & Simulation struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across World Models & Simulation benchmark suites.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31667",
-      "arxiv_id": "2610.31667",
-      "title": "Direct Pass@ Optimization for Thought Pruning: Balancing Quality and Diversity in Test-Time Reasoning",
+      "id": "arxiv:2609.33325",
+      "arxiv_id": "2609.33325",
+      "title": "VisionHOPE: Visual Backbones as Self-Modifying Learning Systems",
       "authors": [
-        "Mahdi Salmani",
-        "Adel Javanmard",
-        "Devansh Gupta",
-        "Meisam Razaviyayn"
+        "Siran Peng",
+        "Tianshuo Zhang",
+        "Tianyu Fu",
+        "Weisong Zhao",
+        "Haoyuan Zhang",
+        "Jiankuo Zhao",
+        "Minghui Wu",
+        "Ping Jiang",
+        "Xiangyu Zhu",
+        "Chenxu Zhao",
+        "Zhen Lei"
       ],
-      "category": "cs.AI · Test-Time Compute & Search",
-      "published_at": "2026-10-22T17:59:48Z",
-      "updated_at": "2026-10-22T17:59:48Z",
-      "landing_url": "https://arxiv.org/abs/2610.31667",
-      "pdf_url": "https://arxiv.org/pdf/2610.31667",
-      "discussion_url": "https://huggingface.co/papers/2610.31667",
-      "abstract": "Test-time scaling has emerged as a key inference strategy for reasoning models, where a model generates a large number of candidate solutions in the hope of finding at least one correct solution. Running all candidate solutions to completion can be computationally demanding, so recent work prunes the candidate pool after generating only a short prefix, committing further computation only to the surviving candidates. Existing pruning strategies divide broadly into two categories: Quality-based methods assign a score to each partial solution and discard those predicted to ultimately lead to an incorrect final solution, while diversity-based methods select partial solutions that follow different reasoning trajectories and are therefore likely to cover different final solutions. The tension between these two objectives is an instance of exploration versus exploitation, yet little to no prior work on pruning exposes this trade-off directly, let alone optimizes it. In this paper, we introduce a pruning procedure that addresses this trade-off directly by optimizing pass@ over the selected solution pool. In particular, it chooses the pool to maximize the probability that at least one of its partial solutions, when continued to completion, yields a correct answer. Because this objective simultaneously rewards high-quality partial solutions and penalizes redundancy among them, quality and diversity are naturally balanced by the criterion itself rather than through separate ad-hoc design choices. On eight open-weight reasoning models, our method outperforms existing quality-based and diversity-based pruning strategies. The gains are particularly pronounced when the pruning procedure keeps a moderate number of partial solutions for continued generation, highlighting the value of directly balancing quality and diversity during pruning.",
-      "summary_25_words": "Test-time scaling has emerged as a key inference strategy for reasoning models, where a model generates a large number of candidate solutions in the hope…",
+      "abstract": "Visual backbones have evolved from Convolutional Neural Networks (CNNs) with local aggregation to Vision Transformers (ViTs) with global interactions, State-Space Models (SSMs) with input-dependent state transitions, and Test-Time Training (TTT) layers that adapt an inner learner while processing an image. Across this progression, visual computation has become increasingly adaptive to each input, yet the rules governing that adaptation remain largely prescribed by the trained backbone. We introduce VisionHOPE, the first generic visual backbone formulated as a self-modifying learning system, in which what the model remembers and how it learns co-evolve within an image. Building on the self-referential construction of Nested Learning (NL), VisionHOPE realizes this co-evolution through five coupled memories that store content, generate key and value representations, and govern learning rate and retention. These memories evolve jointly as visual context accumulates along each scan. However, directly applying the unconstrained self-referential update to a visual backbone leads to instability. We therefore derive a stability-matched step-size control scheme that combines a soft cap on self-referential injection with a spectral clamp on the retained memory transition, and prove that the resulting memory dynamics are non-expansive along each scan. For two-dimensional feature maps, we adapt NL's chunk formulation by aligning chunks with image rows and columns across four directional scans. The proposed VisionHOPE achieves competitive results on ImageNet-1K, COCO, and ADE20K, establishing self-modifying learning systems as a practical foundation for general-purpose visual backbones. The code is available at https://github.com/PSRben/VisionHOPE.",
+      "category": "AI research",
       "keywords": [
-        "Test-Time Compute & Search",
-        "Spatial Reasoning & Geodesics",
-        "LoRA & Parameter-Efficient Tuning"
+        "Memory & long context",
+        "Vision & multimodal"
       ],
+      "upvotes": 344,
+      "published_at": "2026-09-26T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2609.33325",
+      "arxiv_url": "https://arxiv.org/abs/2609.33325",
+      "pdf_url": "https://arxiv.org/pdf/2609.33325",
+      "discussion_url": "https://huggingface.co/papers/2609.33325",
+      "tldr_20_words": "",
+      "summary_25_words": "Visual backbones have evolved from Convolutional Neural Networks (CNNs) with local aggregation to Vision Transformers (ViTs) with global interactions, State-Space Models (SSMs) with input-dependent state transitions, and Test-Time Training (TTT) layers that adapt an inner learner while processing an image. Across this progression, visual computation has become increasingly adaptive to each input, yet the rules governing that adaptation remain largely prescribed by the trained backbone. We introduce VisionHOPE, the first generic visual backbone formulated as a self-modifying learning system, in which what the model remembers and how it learns co-evolve within an image. Building on the self-referential construction of Nested Learning (NL), VisionHOPE realizes this co-evolution through five coupled memories that store content, generate key and value representations, and govern learning rate and retention. These memories evolve jointly as visual context accumulates along each scan. However, directly applying the unconstrained self-referential update to a visual backbone leads to instability. We therefore derive a stability-matched step-size control scheme that combines a soft cap on self-referential injection with a spectral clamp on the retained memory transition, and prove that the resulting memory dynamics are non-expansive along each scan. For two-dimensional feature maps, we adapt NL's chunk formulation by aligning chunks with image rows and columns across four directional scans. The proposed VisionHOPE achieves competitive results on ImageNet-1K, COCO, and ADE20K, establishing self-modifying learning systems as a practical foundation for general-purpose visual backbones. The code is available at https://github.com/PSRben/VisionHOPE.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Memory & long context",
+        "Vision & multimodal"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "A pruning procedure that addresses this trade-off directly by optimizing pass@ over the selected solution pool.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Existing quality-based and diversity-based pruning strategies."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "A pruning procedure that addresses this trade-off directly by optimizing pass@ over the selected solution pool.",
-        "gap": "Little to no prior work on pruning exposes this trade-off directly, let alone optimizes it.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then existing quality-based and diversity-based pruning strategies will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Test-Time Compute & Search benchmark suites.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31663",
-      "arxiv_id": "2610.31663",
-      "title": "Phase Transition from Random Features to Fully Trainable Networks",
+      "id": "arxiv:2610.31329",
+      "arxiv_id": "2610.31329",
+      "title": "WeVisOne-VL: Unified Visual Perception from Objects to Pixels",
       "authors": [
-        "Xin He",
-        "Huan Lao",
-        "Xiliang Lu",
-        "Shijun Zhang"
+        "Tianming Liang",
+        "Junyi Pan",
+        "Yuxi Li",
+        "Canmiao Fu",
+        "Zhipeng Huang",
+        "Chong Sun",
+        "Chen Li",
+        "Jing Lyu"
       ],
-      "category": "math.NA · Agentic Reasoning",
-      "published_at": "2026-10-22T17:59:29Z",
-      "updated_at": "2026-10-22T17:59:29Z",
-      "landing_url": "https://arxiv.org/abs/2610.31663",
-      "pdf_url": "https://arxiv.org/pdf/2610.31663",
-      "discussion_url": "https://huggingface.co/papers/2610.31663",
-      "abstract": "Constructing accurate and computationally tractable approximation spaces is a fundamental task in scientific computing. Partially trainable neural networks bridge fixed random features and fully adaptive representations. This paper quantifies a phase transition pattern in approximation bounds and observes analogous behavior in training errors: a rapid but smooth initial improvement followed by diminishing returns, with a sharper transition under greater initialization mismatch. Under polynomial spectral decay with exponent and leverage compatibility, we establish a squared approximation rate for two-layer networks of width and trainable proportion , where . The bound holds uniformly over the unit ball of a reproducing kernel Hilbert space (RKHS) with probability at least . The constants and quantify the fixed and trainable groups' sampling mismatches relative to the target RKHS. For spherical biased-ReLU features in dimension , we verify these assumptions with and for initialization scale , and under ridge leverage sampling. For and , a trainable proportion of approximately captures of the reduction in the approximation bound from to . A structured three-layer example illustrates how a few trainable first-layer neurons exploit fixed downstream blocks through nonlinear composition. Numerical experiments across diverse settings, including networks with up to 15 layers, exhibit similar phase transitions in training errors.",
-      "summary_25_words": "Constructing accurate and computationally tractable approximation spaces is a fundamental task in scientific computing. Partially trainable neural networks bridge fixed random features and fully adaptive representations.",
+      "abstract": "Existing vision-language models (VLMs) remain unreliable for fine-grained visual perception. In this report, we present WeVisOne-VL (WeChat Vision All-in-One), a powerful VLM that unifies object-level and pixel-level perception through structured next-token prediction. It supports multiple visual tasks including object detection, referring localization, counting, OCR, segmentation, and matting, enabling localization at any user-specific granularity, from points and boxes to masks and alpha mattes. Architecturally, we integrate a lightweight pixel decoder into the VLM via a special <OBJ> token to generate instance-level pixel outputs. We train the model with a three-stage curriculum SFT followed by mixed-task RL. Across over 30 benchmarks, WeVisOne-VL demonstrates leading performance on both object-level and pixel-level tasks, while maintaining robust rejection for object-absent queries. By releasing WeVisOne-VL to the open-source community, we hope to advance VLMs from broad visual understanding toward truly reliable perception systems for real-world deployment.",
+      "category": "AI research",
       "keywords": [
-        "Agentic Reasoning",
-        "Representation & Manifolds",
-        "Memory-Native Systems"
+        "Vision & multimodal"
       ],
+      "upvotes": 248,
+      "published_at": "2026-10-21T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.31329",
+      "arxiv_url": "https://arxiv.org/abs/2610.31329",
+      "pdf_url": "https://arxiv.org/pdf/2610.31329",
+      "discussion_url": "https://huggingface.co/papers/2610.31329",
+      "tldr_20_words": "",
+      "summary_25_words": "Existing vision-language models (VLMs) remain unreliable for fine-grained visual perception. In this report, we present WeVisOne-VL (WeChat Vision All-in-One), a powerful VLM that unifies object-level and pixel-level perception through structured next-token prediction. It supports multiple visual tasks including object detection, referring localization, counting, OCR, segmentation, and matting, enabling localization at any user-specific granularity, from points and boxes to masks and alpha mattes. Architecturally, we integrate a lightweight pixel decoder into the VLM via a special <OBJ> token to generate instance-level pixel outputs. We train the model with a three-stage curriculum SFT followed by mixed-task RL. Across over 30 benchmarks, WeVisOne-VL demonstrates leading performance on both object-level and pixel-level tasks, while maintaining robust rejection for object-absent queries. By releasing WeVisOne-VL to the open-source community, we hope to advance VLMs from broad visual understanding toward truly reliable perception systems for real-world deployment.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Vision & multimodal"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "Introduces novel methodology for phase transition from random features to fully trainable networks.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "Introduces novel methodology for phase transition from random features to fully trainable networks.",
-        "gap": "Current approaches in Agentic Reasoning struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Agentic Reasoning benchmark suites.",
-        "metric": "including networks with up to 15 layers, exhibit similar phase transitions in training errors."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31662",
-      "arxiv_id": "2610.31662",
-      "title": "Reliable AI-Assisted Decisions via Selective Auditing",
+      "id": "arxiv:2609.33757",
+      "arxiv_id": "2609.33757",
+      "title": "YuE2: Unifying Symbolic and Audio Music Generation at Frontier Quality",
       "authors": [
-        "Isaac Gibbs",
-        "Elise L. Han",
-        "Ryan J. Tibshirani",
-        "Tijana Zrnic"
+        "Ruibin Yuan",
+        "Jiahao Pan",
+        "Junyan Jiang",
+        "Zhiyue Wu",
+        "Ziya Zhou",
+        "Jiankai Sun",
+        "Yizhi Li",
+        "Ge Zhang",
+        "Yicheng Gu",
+        "Zeyue Tian",
+        "Junyu Dai",
+        "Hanfeng Lin",
+        "Kai Li",
+        "Shangda Wu",
+        "Xuanjie Liu",
+        "Jiaming Wang",
+        "Zihan Liu",
+        "Yue Wang",
+        "Yinghao Ma",
+        "Hanzhi Yin",
+        "Kangrui Chen",
+        "Xinyue Zhang",
+        "Ziyang Ma",
+        "Mengqi Liao",
+        "Hejia Zhao",
+        "Guowei Huang",
+        "Chao Yan",
+        "Lei Ke",
+        "Jianwei Yu",
+        "Bei Liu",
+        "Joe Guo",
+        "Liumeng Xue",
+        "Gus Xia",
+        "Wei Xue",
+        "Yike Guo"
       ],
-      "category": "stat.ML · Provenance & Reproducibility",
-      "published_at": "2026-10-22T17:59:22Z",
-      "updated_at": "2026-10-22T17:59:22Z",
-      "landing_url": "https://arxiv.org/abs/2610.31662",
-      "pdf_url": "https://arxiv.org/pdf/2610.31662",
-      "discussion_url": "https://huggingface.co/papers/2610.31662",
-      "abstract": "We consider online monitoring of an AI system that produces a sequence of decisions. At each round, the system outputs a proposed decision together with a confidence score estimating the trustworthiness of the decision. The decision and confidence score need not be produced by the same model: for example, one agent may propose a decision, while a separate verifier agent evaluates it and outputs a correctness or safety score. Based on this information, we must decide whether to accept the AI decision automatically or consult an expert, such as a human auditor, who reviews the proposal and either accepts or corrects it. We formulate this task as an online constrained optimization problem in which the goal is to minimize the frequency of expert auditing while guaranteeing that the fraction of AI errors that go unaudited stays below a user-defined threshold. We derive a family of algorithms with provable error-control guarantees with no assumptions, including a method that is optimally efficient: it asymptotically attains the best achievable auditing rate for both adversarial and i.i.d. data streams. Experiments on screening harmful requests to large language models, qualitative text annotation, and data labeling show that our methods achieve valid error control in practice while substantially reducing the need for human auditing compared to baselines.",
-      "summary_25_words": "We consider online monitoring of an AI system that produces a sequence of decisions. At each round, the system outputs a proposed decision together with…",
+      "abstract": "Symbolic models make melody, harmony, rhythm, and form explicit but typically stop before a finished recording; audio models produce complete songs while leaving composition implicit. We introduce YuE2, which unifies symbolic and audio music generation at frontier quality through symbolic planning. A single AR-NAR Mixture-of-Transformers (MoT) first writes a readable score specifying melody and harmony, expands it into semantic music tokens, and realizes it as full-song audio. In comparisons using the same checkpoint, experts prefer symbolic planning for overall quality and musicality, with 49.3% of overall preferences versus 34.6% without planning. Experts also favor the unified model over a separate language model and diffusion Transformer. On WildSongBench, YuE2 scores 6.73 on SongBench Global Avg, exceeding all evaluated public baselines. Selecting from eight candidates (best-of-8), YuE2 reaches 6.96, the highest observed mean among all evaluated systems. Expert listening further establishes its competitiveness with proprietary song generators, favoring best-of-8 over Suno v4.5 and yielding nearly balanced preferences against Suno v5. To learn this generation process from recordings without aligned scores, we introduce MERT2 and SheetSage2 to supply semantic and symbolic supervision. MERT2 sets a new state of the art in music representation learning, surpassing previous best results on 14 of 15 MARBLE metrics; SheetSage2 leads 12 of 15 benchmark-metric pairs in our lead-sheet transcription comparison. The same checkpoint follows score edits while largely preserving unedited musical content and generates zero-shot covers without cover-specific training. Its readable score also enables agentic music editing, with external language models translating user feedback into revisions of the composition.",
+      "category": "AI research",
       "keywords": [
-        "Provenance & Reproducibility",
-        "AI Safety & Alignment",
-        "Agentic Reasoning"
+        "Evaluation",
+        "Generative models",
+        "Reasoning"
       ],
+      "upvotes": 206,
+      "published_at": "2026-09-26T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2609.33757",
+      "arxiv_url": "https://arxiv.org/abs/2609.33757",
+      "pdf_url": "https://arxiv.org/pdf/2609.33757",
+      "discussion_url": "https://huggingface.co/papers/2609.33757",
+      "tldr_20_words": "",
+      "summary_25_words": "Symbolic models make melody, harmony, rhythm, and form explicit but typically stop before a finished recording; audio models produce complete songs while leaving composition implicit. We introduce YuE2, which unifies symbolic and audio music generation at frontier quality through symbolic planning. A single AR-NAR Mixture-of-Transformers (MoT) first writes a readable score specifying melody and harmony, expands it into semantic music tokens, and realizes it as full-song audio. In comparisons using the same checkpoint, experts prefer symbolic planning for overall quality and musicality, with 49.3% of overall preferences versus 34.6% without planning. Experts also favor the unified model over a separate language model and diffusion Transformer. On WildSongBench, YuE2 scores 6.73 on SongBench Global Avg, exceeding all evaluated public baselines. Selecting from eight candidates (best-of-8), YuE2 reaches 6.96, the highest observed mean among all evaluated systems. Expert listening further establishes its competitiveness with proprietary song generators, favoring best-of-8 over Suno v4.5 and yielding nearly balanced preferences against Suno v5. To learn this generation process from recordings without aligned scores, we introduce MERT2 and SheetSage2 to supply semantic and symbolic supervision. MERT2 sets a new state of the art in music representation learning, surpassing previous best results on 14 of 15 MARBLE metrics; SheetSage2 leads 12 of 15 benchmark-metric pairs in our lead-sheet transcription comparison. The same checkpoint follows score edits while largely preserving unedited musical content and generates zero-shot covers without cover-specific training. Its readable score also enables agentic music editing, with external language models translating user feedback into revisions of the composition.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Evaluation",
+        "Generative models",
+        "Reasoning"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "Introduces novel methodology for reliable ai-assisted decisions via selective auditing.",
-        "methodological_novelty": "By this information, we must decide whether to accept the AI decision automatically or consult an expert, such as a human auditor, who reviews the proposal and either accepts or corrects it.",
-        "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "Introduces novel methodology for reliable ai-assisted decisions via selective auditing.",
-        "gap": "Current approaches in Provenance & Reproducibility struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy this information, we must decide whether to accept the ai decision automatically or consult an expert, such as a human auditor, who reviews the proposal and either accepts or corrects it, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-        "setup": "Baseline architecture augmented with this information, we must decide whether to accept the ai decision automatically or consult an expert, such as a human auditor, who reviews the proposal and either accepts or corrects it; evaluated across screening harmful requests to large language models, qualitative text annotation, and data labeling show that our methods achieve valid error control in practice while substantially reducing the need for human auditing compared to baselines.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31661",
-      "arxiv_id": "2610.31661",
-      "title": "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
+      "id": "arxiv:2509.22186",
+      "arxiv_id": "2509.22186",
+      "title": "MinerU2.5: A Decoupled Vision-Language Model for Efficient\n  High-Resolution Document Parsing",
       "authors": [
-        "Ariel Slepyan",
-        "Geeta Chandra Raju Bethala",
-        "Jiafeng Gu",
-        "Anagha Rajendra Dangle",
-        "Yinzhe Zhou"
+        "Junbo Niu",
+        "Zheng Liu",
+        "Zhuangcheng Gu",
+        "Bin Wang",
+        "Linke Ouyang",
+        "Zhiyuan Zhao",
+        "Tao Chu",
+        "Tianyao He",
+        "Fan Wu",
+        "Qintong Zhang",
+        "Zhenjiang Jin",
+        "Guang Liang",
+        "Rui Zhang",
+        "Wenzheng Zhang",
+        "Yuan Qu",
+        "Zhifei Ren",
+        "Yuefeng Sun",
+        "Yuanhong Zheng",
+        "Dongsheng Ma",
+        "Zirui Tang",
+        "Boyu Niu",
+        "Ziyang Miao",
+        "Hejun Dong",
+        "Siyi Qian",
+        "Junyuan Zhang",
+        "Jingzhou Chen",
+        "Fangdong Wang",
+        "Xiaomeng Zhao",
+        "Liqun Wei",
+        "Wei Li",
+        "Shasha Wang",
+        "Ruiliang Xu",
+        "Yuanyuan Cao",
+        "Lu Chen",
+        "Qianqian Wu",
+        "Huaiyu Gu",
+        "Lindong Lu",
+        "Keming Wang",
+        "Dechen Lin",
+        "Guanlin Shen",
+        "Xuanhe Zhou",
+        "Linfeng Zhang",
+        "Yuhang Zang",
+        "Xiaoyi Dong",
+        "Jiaqi Wang",
+        "Bo Zhang",
+        "Lei Bai",
+        "Pei Chu",
+        "Weijia Li",
+        "Jiang Wu",
+        "Lijun Wu",
+        "Zhenxiang Li",
+        "Guangyu Wang",
+        "Zhongying Tu",
+        "Chao Xu",
+        "Kai Chen",
+        "Yu Qiao",
+        "Bowen Zhou",
+        "Dahua Lin",
+        "Wentao Zhang",
+        "Conghui He"
       ],
-      "category": "cs.RO · Spatial Reasoning & Geodesics",
-      "published_at": "2026-10-22T17:59:06Z",
-      "updated_at": "2026-10-22T17:59:06Z",
-      "landing_url": "https://arxiv.org/abs/2610.31661",
-      "pdf_url": "https://arxiv.org/pdf/2610.31661",
-      "discussion_url": "https://huggingface.co/papers/2610.31661",
-      "abstract": "We present OpenTac, a novel sensor and a full-stack ecosystem for tactile skins that are highly customizable, scalable, and readily deployed in downstream robot control and learning applications. Our core contribution is twofold. First, we develop a scalable resistive tactile skin with a structured deformable overlay that converts tangential loading into spatially varying pressure. Differential responses across neighboring \"taxels\" support decoding of local shear vectors, and the common-mode response encodes normal force. Second, we provide a highly customizable sensor design tool that is able to automatically generate fabrication files for these tactile skins from 2D outlines and developable 3D surfaces, including from abstract descriptions such as text (e.g., \"design a sensor for a size 9 shoe insole\"). We develop an ecosystem around the OpenTac sensor, including the CAD design tool, a sensor simulator, cross-sensor transfer, and fast/adaptive data acquisition. We demonstrate the broad applicability of the OpenTac-CAD sensor design tool by designing and fabricating more than 30 sensors across a variety of robot embodiments. We characterize the three-dimensional tactile fields produced by OpenTac with a commercial, high-precision force/torque sensor. We demonstrate the broad applicability of 3D tactile sensing across contact-rich feedback control and manipulation policy learning on four real-world robot embodiments. Additionally, adaptive acquisition enables kilohertz-rate partial readouts, exceeding full-array raster scanning on the same sensor by 19.2X at 16 sampled taxels per update for a 1024-taxel skin. We provide all hardware, software, and result videos are at opentac.github.io",
-      "summary_25_words": "OpenTac, a novel sensor and a full-stack ecosystem for tactile skins that are highly customizable, scalable, and readily deployed in downstream robot control and learning…",
+      "abstract": "We introduce MinerU2.5, a 1.2B-parameter document parsing vision-language\nmodel that achieves state-of-the-art recognition accuracy while maintaining\nexceptional computational efficiency. Our approach employs a coarse-to-fine,\ntwo-stage parsing strategy that decouples global layout analysis from local\ncontent recognition. In the first stage, the model performs efficient layout\nanalysis on downsampled images to identify structural elements, circumventing\nthe computational overhead of processing high-resolution inputs. In the second\nstage, guided by the global layout, it performs targeted content recognition on\nnative-resolution crops extracted from the original image, preserving\nfine-grained details in dense text, complex formulas, and tables. To support\nthis strategy, we developed a comprehensive data engine that generates diverse,\nlarge-scale training corpora for both pretraining and fine-tuning. Ultimately,\nMinerU2.5 demonstrates strong document parsing ability, achieving\nstate-of-the-art performance on multiple benchmarks, surpassing both\ngeneral-purpose and domain-specific models across various recognition tasks,\nwhile maintaining significantly lower computational overhead.",
+      "category": "AI research",
       "keywords": [
-        "Spatial Reasoning & Geodesics",
-        "Reinforcement Learning",
-        "Agentic Reasoning"
+        "Vision & multimodal"
       ],
+      "upvotes": 181,
+      "published_at": "2025-09-26T06:45:48.000Z",
+      "hf_url": "https://huggingface.co/papers/2509.22186",
+      "arxiv_url": "https://arxiv.org/abs/2509.22186",
+      "pdf_url": "https://arxiv.org/pdf/2509.22186",
+      "discussion_url": "https://huggingface.co/papers/2509.22186",
+      "tldr_20_words": "",
+      "summary_25_words": "We introduce MinerU2.5, a 1.2B-parameter document parsing vision-language\nmodel that achieves state-of-the-art recognition accuracy while maintaining\nexceptional computational efficiency. Our approach employs a coarse-to-fine,\ntwo-stage parsing strategy that decouples global layout analysis from local\ncontent recognition. In the first stage, the model performs efficient layout\nanalysis on downsampled images to identify structural elements, circumventing\nthe computational overhead of processing high-resolution inputs. In the second\nstage, guided by the global layout, it performs targeted content recognition on\nnative-resolution crops extracted from the original image, preserving\nfine-grained details in dense text, complex formulas, and tables. To support\nthis strategy, we developed a comprehensive data engine that generates diverse,\nlarge-scale training corpora for both pretraining and fine-tuning. Ultimately,\nMinerU2.5 demonstrates strong document parsing ability, achieving\nstate-of-the-art performance on multiple benchmarks, surpassing both\ngeneral-purpose and domain-specific models across various recognition tasks,\nwhile maintaining significantly lower computational overhead.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Vision & multimodal"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "OpenTac, a novel sensor and a full-stack ecosystem for tactile skins that are highly customizable, scalable, and readily deployed in downstream robot control and learning applications.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "OpenTac, a novel sensor and a full-stack ecosystem for tactile skins that are highly customizable, scalable, and readily deployed in downstream robot control and learning applications.",
-        "gap": "Current approaches in Spatial Reasoning & Geodesics struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-        "metric": "raster scanning on the same sensor by 19.2X at 16 sampled taxels per update for a 1024-taxel skin."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31659",
-      "arxiv_id": "2610.31659",
-      "title": "SpectralCanary: Embarrassingly Simple Low-Frequency Traces for T2I Dataset-Use Auditing",
+      "id": "arxiv:2610.26825",
+      "arxiv_id": "2610.26825",
+      "title": "MemT-1.0: Towards Memory-Native Evolution",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Anirudh Satheesh",
-        "Soham Chawathe",
-        "Huy Nghiem",
-        "Yongkyun Lee"
+        "Zhiyu Li",
+        "Zeyu Zhang",
+        "Linyun Liu",
+        "Yiwei Bu",
+        "Chenyang Xi",
+        "Xichong Zhang",
+        "Yi Yu",
+        "Yu Yu",
+        "Zhichen Liu",
+        "Yuxiao Yi",
+        "Chunyu Li",
+        "Haoran Liu",
+        "Zhenkai Ding",
+        "Le Zhou",
+        "Juncheng Zhang",
+        "Boyu Chen",
+        "Zehao Lin",
+        "Guorui Li",
+        "Renyu Fu",
+        "Ji Li",
+        "Youyang Xia",
+        "Jiajun Shen",
+        "Harvey Li",
+        "Jingsong Zhou",
+        "Helan Hu",
+        "Tong Shen",
+        "Tianxiao Xu",
+        "Chenye Han",
+        "Weijie Li",
+        "Zhongquan Zhou",
+        "Hongming Xu",
+        "Yuekeng Li",
+        "Erenkai Zhu",
+        "Peng Yu",
+        "Wenhao Li",
+        "Jingyi Kang",
+        "Xixuan Hao",
+        "Xuzhou Zhu",
+        "Can Chen",
+        "Jiawei Liu",
+        "Chen Jiang",
+        "Tao Jiang",
+        "Fangwei Xiang",
+        "Zepeng Yao",
+        "Kai Chen",
+        "Guang Yang",
+        "Mingfei Lu",
+        "Chunhui Li",
+        "Zhengxuan Jiang",
+        "Bo Tang",
+        "Shiyu Zhan",
+        "Yihang Sun",
+        "Jie Chu",
+        "Wenjun Xiong",
+        "Zhenxiang Hua",
+        "Chen Lin",
+        "Detong Su",
+        "Dongyu Deng",
+        "Qiuping Ding",
+        "Guofeng Ding",
+        "Si Chen",
+        "Guohua Wen",
+        "Xu Chen",
+        "Zhi-Qin John Xu",
+        "Ying-Cong Chen",
+        "Ningyu Zhang",
+        "Haofen Wang",
+        "Muning Wen",
+        "Haotian Chen",
+        "Wentao Zhang",
+        "Xuanhe Zhou",
+        "Rita Zhang",
+        "Junchi Yan",
+        "Feiyu Xiong"
       ],
-      "category": "cs.CV · Provenance & Reproducibility",
-      "published_at": "2026-10-22T17:59:03Z",
-      "updated_at": "2026-10-22T17:59:03Z",
-      "landing_url": "https://arxiv.org/abs/2610.31659",
-      "pdf_url": "https://arxiv.org/pdf/2610.31659",
-      "discussion_url": "https://huggingface.co/papers/2610.31659",
-      "abstract": "Auditing whether a text-to-image (T2I) model was fine-tuned on a particular image collection is difficult: a model can absorb collection-level visual characteristics without reproducing training images. Proactive dataset-use auditing plants a shared signal in a dataset before release, then later checks whether that signal appears in a suspect model's generated outputs. Existing approaches often trade off verifiability, fidelity, robustness, and deployability. We introduce , which uses a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization. A lightweight verifier detects the transferred signal in suspect-model outputs. Across eight tests on the Pokemon dataset and three realistic data transformations, spanning two architectures families, SpectralCanary achieves the highest average per-generation TPR@ FPR () and fixed threshold model-level accuracy using 30 generations () among the evaluated methods. Across five datasets spanning artistic, medical, satellite, and fashion domains with SD3.5, SpectralCanary averages per-generation TPR@ FPR while preserving the released images (SSIM , LPIPS ) with a near-zero mean change FID (mean FID ) across datasets. Matched-energy ablations on Pokemon and ROCOv2 support our design choice, low-frequency placement transfers more reliably compared to mid/high-frequency placement. Under the evaluated adaptive attacks, the most effective removal requires aggressive modification and incurs more than FID points. These results identify low-frequency visual signals as effective carriers for collection-level T2I audit traces.",
-      "summary_25_words": "Auditing whether a text-to-image (T2I) model was fine-tuned on a particular image collection is difficult: a model can absorb collection-level visual characteristics without reproducing training…",
+      "abstract": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
+      "category": "AI research",
       "keywords": [
-        "Provenance & Reproducibility",
-        "Test-Time Compute & Search",
-        "Fault Tolerance & Reliability"
+        "Memory & long context",
+        "Retrieval & RAG",
+        "Evaluation"
       ],
+      "upvotes": 180,
+      "published_at": "2026-10-18T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.26825",
+      "arxiv_url": "https://arxiv.org/abs/2610.26825",
+      "pdf_url": "https://arxiv.org/pdf/2610.26825",
+      "discussion_url": "https://huggingface.co/papers/2610.26825",
+      "tldr_20_words": "",
+      "summary_25_words": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Memory & long context",
+        "Retrieval & RAG",
+        "Evaluation"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": ", which uses a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization.",
-        "methodological_novelty": "By a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization.",
-        "empirical_validation": "The highest average per-generation TPR@ FPR () and fixed threshold model-level accuracy using 30 generations () among the evaluated methods."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": ", which uses a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization.",
-        "gap": "Often trade off verifiability, fidelity, robustness, and deployability.",
-        "hypothesis": "If we deploy a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization, then the highest average per-generation tpr@ fpr  and fixed threshold model-level accuracy using 30 generations  among the evaluated methods will be achieved.",
-        "setup": "Baseline architecture augmented with a smooth low-pass mask to blend a fixed canary image into every collection image while leaving captions unchanged and requiring neither auxiliary generation nor per-image optimization; evaluated across Provenance & Reproducibility benchmark suites.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     },
     {
-      "id": "arxiv:2610.31657",
-      "arxiv_id": "2610.31657",
-      "title": "Cost-Aware Abstention for LLM-Based IT Ticket Classification",
+      "id": "arxiv:2503.11576",
+      "arxiv_id": "2503.11576",
+      "title": "SmolDocling: An ultra-compact vision-language model for end-to-end\n  multi-modal document conversion",
       "authors": [
-        "Sachin Gupta"
+        "Ahmed Nassar",
+        "Andres Marafioti",
+        "Matteo Omenetti",
+        "Maksym Lysak",
+        "Nikolaos Livathinos",
+        "Christoph Auer",
+        "Lucas Morin",
+        "Rafael Teixeira de Lima",
+        "Yusik Kim",
+        "A. Said Gurbuz",
+        "Michele Dolfi",
+        "Miquel Farré",
+        "Peter W. J. Staar"
       ],
-      "category": "cs.LG · Reinforcement Learning",
-      "published_at": "2026-10-22T17:58:52Z",
-      "updated_at": "2026-10-22T17:58:52Z",
-      "landing_url": "https://arxiv.org/abs/2610.31657",
-      "pdf_url": "https://arxiv.org/pdf/2610.31657",
-      "discussion_url": "https://huggingface.co/papers/2610.31657",
-      "abstract": "Wrong automatic routing of an IT support ticket can cost more than human triage. We evaluate cost-aware abstention as an offline, cost-conditional readiness assessment: select a routing policy on calibration data under explicit costs, then evaluate that frozen policy once on held-out test data. On a public 47,837-ticket, eight-class corpus, we compare four trained non-LLM classifiers with four large language models under zero- and few-shot prompting. Under the illustrative cost model (c_ok, c_triage, c_wrong) = (0, 1, 5), TF-IDF with logistic regression and a threshold of 0.60 selected on calibration reduces test cost from 0.763 to 0.472, a 38.1% relative reduction (paired ratio-bootstrap 95% CI [35.7%, 40.4%]), while lowering wrong routes from 15.3% to 3.5%. Frozen calibration-selected policies also beat both always-route and always-defer on held-out test data in 14 of 16 settings in a post-hoc cost-parameter analysis. The strongest prompted configuration reaches 0.477 accuracy on a stratified 1,000-ticket test subset, versus 0.879 for fine-tuned DistilBERT on the same tickets. Isotonic lowers expected calibration error without reliably improving discrimination: GPT-4o-mini few-shot has one confidence value before and after recalibration and correctness AUROC 0.500. We therefore report correctness AUROC and tie-aware risk-coverage area alongside ECE. At the analytically derived break-even probability 0.80, seven prompted configurations defer all tickets; Haiku few-shot routes only 19/1,000. An LLM-only agreement control and margin/entropy rejection baselines further separate calibration from discrimination. The findings are scoped to this dataset, prompt design, model endpoints, and illustrative costs; the work is an evaluation framework, not a new abstention algorithm or universal deployment certification.",
-      "summary_25_words": "Wrong automatic routing of an IT support ticket can cost more than human triage. We evaluate cost-aware abstention as an offline, cost-conditional readiness assessment: select…",
+      "abstract": "We introduce SmolDocling, an ultra-compact vision-language model targeting\nend-to-end document conversion. Our model comprehensively processes entire\npages by generating DocTags, a new universal markup format that captures all\npage elements in their full context with location. Unlike existing approaches\nthat rely on large foundational models, or ensemble solutions that rely on\nhandcrafted pipelines of multiple specialized models, SmolDocling offers an\nend-to-end conversion for accurately capturing content, structure and spatial\nlocation of document elements in a 256M parameters vision-language model.\nSmolDocling exhibits robust performance in correctly reproducing document\nfeatures such as code listings, tables, equations, charts, lists, and more\nacross a diverse range of document types including business documents, academic\npapers, technical reports, patents, and forms -- significantly extending beyond\nthe commonly observed focus on scientific papers. Additionally, we contribute\nnovel publicly sourced datasets for charts, tables, equations, and code\nrecognition. Experimental results demonstrate that SmolDocling competes with\nother Vision Language Models that are up to 27 times larger in size, while\nreducing computational requirements substantially. The model is currently\navailable, datasets will be publicly available soon.",
+      "category": "AI research",
       "keywords": [
-        "Reinforcement Learning",
-        "Agentic Reasoning",
-        "Representation & Manifolds"
+        "Vision & multimodal"
       ],
+      "upvotes": 180,
+      "published_at": "2025-03-14T12:44:14.000Z",
+      "hf_url": "https://huggingface.co/papers/2503.11576",
+      "arxiv_url": "https://arxiv.org/abs/2503.11576",
+      "pdf_url": "https://arxiv.org/pdf/2503.11576",
+      "discussion_url": "https://huggingface.co/papers/2503.11576",
+      "tldr_20_words": "",
+      "summary_25_words": "We introduce SmolDocling, an ultra-compact vision-language model targeting\nend-to-end document conversion. Our model comprehensively processes entire\npages by generating DocTags, a new universal markup format that captures all\npage elements in their full context with location. Unlike existing approaches\nthat rely on large foundational models, or ensemble solutions that rely on\nhandcrafted pipelines of multiple specialized models, SmolDocling offers an\nend-to-end conversion for accurately capturing content, structure and spatial\nlocation of document elements in a 256M parameters vision-language model.\nSmolDocling exhibits robust performance in correctly reproducing document\nfeatures such as code listings, tables, equations, charts, lists, and more\nacross a diverse range of document types including business documents, academic\npapers, technical reports, patents, and forms -- significantly extending beyond\nthe commonly observed focus on scientific papers. Additionally, we contribute\nnovel publicly sourced datasets for charts, tables, equations, and code\nrecognition. Experimental results demonstrate that SmolDocling competes with\nother Vision Language Models that are up to 27 times larger in size, while\nreducing computational requirements substantially. The model is currently\navailable, datasets will be publicly available soon.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Vision & multimodal"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
       "three_pillars": {
-        "core_breakthrough": "Introduces novel methodology for cost-aware abstention for llm-based it ticket classification.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "Test cost from 0."
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
       },
-      "paper_idea": {
-        "pitch": "Introduces novel methodology for cost-aware abstention for llm-based it ticket classification.",
-        "gap": "Current approaches in Reinforcement Learning struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then test cost from 0 will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Reinforcement Learning benchmark suites.",
-        "metric": "763 to 0.472, a 38."
-      },
-      "upvotes": 0
-    },
-    {
-      "id": "arxiv:2610.31656",
-      "arxiv_id": "2610.31656",
-      "title": "METTA: Memory-Enhanced Test-Time Adaptation for Meta-Reinforcement Learning",
-      "authors": [
-        "Ali Najar",
-        "Hosein Hasani",
-        "Amir Kooshan Fattah",
-        "Yasamin Rajabi",
-        "Mahdieh Soleymani Baghshah"
-      ],
-      "category": "cs.LG · Memory-Native Systems",
-      "published_at": "2026-10-22T17:58:27Z",
-      "updated_at": "2026-10-22T17:58:27Z",
-      "landing_url": "https://arxiv.org/abs/2610.31656",
-      "pdf_url": "https://arxiv.org/pdf/2610.31656",
-      "discussion_url": "https://huggingface.co/papers/2610.31656",
-      "abstract": "Meta-reinforcement learning aims to train agents that adapt quickly to unseen tasks from limited interaction, but this requires representing task evidence over long interaction histories. Classical recurrent agents compress experience into hidden states, while transformer-based agents retrieve from past trajectories at quadratic memory and computation cost. In this work, we propose Memory-Enhanced Test-Time Adaptation (METTA) for meta-reinforcement learning. It decomposes the fast adaptation phase into two temporal scales: a causal neural memory performs fine-grained within-episode adaptation with linear sequence complexity, while compact episode-level summaries support long-range cross-episode task inference without attending over the full interaction history. Moreover, equipping agents with neural memory provides sufficient expressive capacity and test-time training capability, enabling effective adaptation to unseen held-out tasks and task families at meta-test time. On unseen held-out Meta-World ML10/45 test environments, METTA achieves a success rate over while maintaining a low training budget and short wall-clock time. On long-context sparse-reward PointMaze tasks, it outperforms transformer-based baselines by exhibiting more structured exploration behavior. These results show that METTA provides an efficient path toward more adaptive and scalable long-context meta-RL.",
-      "summary_25_words": "Meta-reinforcement learning aims to train agents that adapt quickly to unseen tasks from limited interaction, but this requires representing task evidence over long interaction histories.…",
-      "keywords": [
-        "Memory-Native Systems",
-        "Reinforcement Learning",
-        "Test-Time Compute & Search"
-      ],
-      "three_pillars": {
-        "core_breakthrough": "Memory-Enhanced Test-Time Adaptation (METTA) for meta-reinforcement learning.",
-        "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-        "empirical_validation": "A success rate over while maintaining a low training budget and short wall-clock time."
-      },
-      "paper_idea": {
-        "pitch": "Memory-Enhanced Test-Time Adaptation (METTA) for meta-reinforcement learning.",
-        "gap": "Current approaches in Memory-Native Systems struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-        "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then a success rate over while maintaining a low training budget and short wall-clock time will be achieved.",
-        "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Memory-Native Systems benchmark suites.",
-        "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-      },
-      "upvotes": 0
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
     }
   ],
-  "live_trends": [
+  "trending_topics": [
     {
-      "title": "Agentic Reasoning (6 active preprints)",
-      "detail": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-      "source": "[A Unified Framework for Image-to-3D Part…](https://arxiv.org/abs/2610.31671)",
-      "domain": "Agentic Reasoning",
-      "count": "6",
-      "topic_idea": {
-        "pitch": "Accelerate Agentic Reasoning by unifying algorithmic topology and training formulation tailored for scalable deployment to overcome compute bottlenecks and policy drift.",
-        "gap": "Current Agentic Reasoning paradigms exhibit high compute overhead and struggle when evaluated outside narrow distribution bounds.",
-        "hypothesis": "If we integrate algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 across multi-task evaluations.",
-        "setup": "Harness combining A Unified Framework for Image-to-3D Part Generation via Variable Granularity architecture with open benchmarks (6 live peer-reviewed reference preprints).",
-        "metric": "Surpass leading published checkpoints on Agentic Reasoning leaderboard with verifiable efficiency improvements.",
-        "sample_paper_title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "sample_arxiv_id": "2610.31671"
-      },
-      "representative_paper": {
-        "id": "arxiv:2610.31671",
-        "arxiv_id": "2610.31671",
-        "title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "authors": [
-          "Qiwen Gu",
-          "Xin Zhou",
-          "Xiwu Chen",
-          "Zhongyang Zhu",
-          "Zhuo Zhang"
-        ],
-        "category": "cs.CV · Spatial Reasoning & Geodesics",
-        "published_at": "2026-10-22T17:59:53Z",
-        "updated_at": "2026-10-22T17:59:53Z",
-        "landing_url": "https://arxiv.org/abs/2610.31671",
-        "pdf_url": "https://arxiv.org/pdf/2610.31671",
-        "discussion_url": "https://huggingface.co/papers/2610.31671",
-        "abstract": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control. In this paper, we introduce FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model. By seamlessly integrating heterogeneous inputs, ranging from sparse points to dense bounding boxes and masks, via gated adaptive modulation, FlexPart unlocks a powerful cross-modal synergy. We also propose an asymmetric geometric guidance mechanism that leverages strong spatial priors to align representations across granularities, improving geometric consistency and facilitating inter-task synergy. Under mask conditioning on PartVerseXL, FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10.5% relative to OmniPart, while maintaining competitive whole-mesh quality. The code can be found at https://github.com/Gucci233/FlexPart",
-        "summary_25_words": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of…",
-        "keywords": [
-          "Spatial Reasoning & Geodesics",
-          "Reinforcement Learning",
-          "Agentic Reasoning"
-        ],
-        "three_pillars": {
-          "core_breakthrough": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-          "empirical_validation": "Part CD by 16."
-        },
-        "paper_idea": {
-          "pitch": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "gap": "Existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control.",
-          "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 will be achieved.",
-          "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-          "metric": "FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10."
-        },
-        "upvotes": 0
-      }
+      "tag": "Vision & multimodal",
+      "count": 4
     },
     {
-      "title": "Spatial Reasoning & Geodesics (4 active preprints)",
-      "detail": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-      "source": "[A Unified Framework for Image-to-3D Part…](https://arxiv.org/abs/2610.31671)",
-      "domain": "Spatial Reasoning & Geodesics",
-      "count": "4",
-      "topic_idea": {
-        "pitch": "Accelerate Spatial Reasoning & Geodesics by unifying algorithmic topology and training formulation tailored for scalable deployment to overcome compute bottlenecks and policy drift.",
-        "gap": "Current Spatial Reasoning & Geodesics paradigms exhibit high compute overhead and struggle when evaluated outside narrow distribution bounds.",
-        "hypothesis": "If we integrate algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 across multi-task evaluations.",
-        "setup": "Harness combining A Unified Framework for Image-to-3D Part Generation via Variable Granularity architecture with open benchmarks (4 live peer-reviewed reference preprints).",
-        "metric": "Surpass leading published checkpoints on Spatial Reasoning & Geodesics leaderboard with verifiable efficiency improvements.",
-        "sample_paper_title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "sample_arxiv_id": "2610.31671"
-      },
-      "representative_paper": {
-        "id": "arxiv:2610.31671",
-        "arxiv_id": "2610.31671",
-        "title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "authors": [
-          "Qiwen Gu",
-          "Xin Zhou",
-          "Xiwu Chen",
-          "Zhongyang Zhu",
-          "Zhuo Zhang"
-        ],
-        "category": "cs.CV · Spatial Reasoning & Geodesics",
-        "published_at": "2026-10-22T17:59:53Z",
-        "updated_at": "2026-10-22T17:59:53Z",
-        "landing_url": "https://arxiv.org/abs/2610.31671",
-        "pdf_url": "https://arxiv.org/pdf/2610.31671",
-        "discussion_url": "https://huggingface.co/papers/2610.31671",
-        "abstract": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control. In this paper, we introduce FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model. By seamlessly integrating heterogeneous inputs, ranging from sparse points to dense bounding boxes and masks, via gated adaptive modulation, FlexPart unlocks a powerful cross-modal synergy. We also propose an asymmetric geometric guidance mechanism that leverages strong spatial priors to align representations across granularities, improving geometric consistency and facilitating inter-task synergy. Under mask conditioning on PartVerseXL, FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10.5% relative to OmniPart, while maintaining competitive whole-mesh quality. The code can be found at https://github.com/Gucci233/FlexPart",
-        "summary_25_words": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of…",
-        "keywords": [
-          "Spatial Reasoning & Geodesics",
-          "Reinforcement Learning",
-          "Agentic Reasoning"
-        ],
-        "three_pillars": {
-          "core_breakthrough": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-          "empirical_validation": "Part CD by 16."
-        },
-        "paper_idea": {
-          "pitch": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "gap": "Existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control.",
-          "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 will be achieved.",
-          "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-          "metric": "FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10."
-        },
-        "upvotes": 0
-      }
+      "tag": "Evaluation",
+      "count": 3
     },
     {
-      "title": "Reinforcement Learning (4 active preprints)",
-      "detail": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-      "source": "[A Unified Framework for Image-to-3D Part…](https://arxiv.org/abs/2610.31671)",
-      "domain": "Reinforcement Learning",
-      "count": "4",
-      "topic_idea": {
-        "pitch": "Accelerate Reinforcement Learning by unifying algorithmic topology and training formulation tailored for scalable deployment to overcome compute bottlenecks and policy drift.",
-        "gap": "Current Reinforcement Learning paradigms exhibit high compute overhead and struggle when evaluated outside narrow distribution bounds.",
-        "hypothesis": "If we integrate algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 across multi-task evaluations.",
-        "setup": "Harness combining A Unified Framework for Image-to-3D Part Generation via Variable Granularity architecture with open benchmarks (4 live peer-reviewed reference preprints).",
-        "metric": "Surpass leading published checkpoints on Reinforcement Learning leaderboard with verifiable efficiency improvements.",
-        "sample_paper_title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "sample_arxiv_id": "2610.31671"
-      },
-      "representative_paper": {
-        "id": "arxiv:2610.31671",
-        "arxiv_id": "2610.31671",
-        "title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
-        "authors": [
-          "Qiwen Gu",
-          "Xin Zhou",
-          "Xiwu Chen",
-          "Zhongyang Zhu",
-          "Zhuo Zhang"
-        ],
-        "category": "cs.CV · Spatial Reasoning & Geodesics",
-        "published_at": "2026-10-22T17:59:53Z",
-        "updated_at": "2026-10-22T17:59:53Z",
-        "landing_url": "https://arxiv.org/abs/2610.31671",
-        "pdf_url": "https://arxiv.org/pdf/2610.31671",
-        "discussion_url": "https://huggingface.co/papers/2610.31671",
-        "abstract": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control. In this paper, we introduce FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model. By seamlessly integrating heterogeneous inputs, ranging from sparse points to dense bounding boxes and masks, via gated adaptive modulation, FlexPart unlocks a powerful cross-modal synergy. We also propose an asymmetric geometric guidance mechanism that leverages strong spatial priors to align representations across granularities, improving geometric consistency and facilitating inter-task synergy. Under mask conditioning on PartVerseXL, FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10.5% relative to OmniPart, while maintaining competitive whole-mesh quality. The code can be found at https://github.com/Gucci233/FlexPart",
-        "summary_25_words": "Controllable 3D part generation is pivotal for digital asset creation, yet existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of…",
-        "keywords": [
-          "Spatial Reasoning & Geodesics",
-          "Reinforcement Learning",
-          "Agentic Reasoning"
-        ],
-        "three_pillars": {
-          "core_breakthrough": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-          "empirical_validation": "Part CD by 16."
-        },
-        "paper_idea": {
-          "pitch": "FlexPart, a unified image-to-3D part generation framework that supports variable-granularity geometric conditions within a single model.",
-          "gap": "Existing methods lack the flexibility to accommodate diverse user workflows requiring varying levels of control.",
-          "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then part cd by 16 will be achieved.",
-          "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-          "metric": "FlexPart reduces Part CD by 16.6% relative to TripoSG + SAM3D and by 10."
-        },
-        "upvotes": 0
-      }
+      "tag": "Memory & long context",
+      "count": 2
     },
     {
-      "title": "Representation & Manifolds (4 active preprints)",
-      "detail": "Sensorimotor Alignment (), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion.",
-      "source": "[Sensorimotor Alignment: A Platonic Proxy…](https://arxiv.org/abs/2610.31670)",
-      "domain": "Representation & Manifolds",
-      "count": "4",
-      "topic_idea": {
-        "pitch": "Accelerate Representation & Manifolds by unifying algorithmic topology and training formulation tailored for scalable deployment to overcome compute bottlenecks and policy drift.",
-        "gap": "Current Representation & Manifolds paradigms exhibit high compute overhead and struggle when evaluated outside narrow distribution bounds.",
-        "hypothesis": "If we integrate algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis across multi-task evaluations.",
-        "setup": "Harness combining Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success architecture with open benchmarks (4 live peer-reviewed reference preprints).",
-        "metric": "Surpass leading published checkpoints on Representation & Manifolds leaderboard with verifiable efficiency improvements.",
-        "sample_paper_title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
-        "sample_arxiv_id": "2610.31670"
-      },
-      "representative_paper": {
-        "id": "arxiv:2610.31670",
-        "arxiv_id": "2610.31670",
-        "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
-        "authors": [
-          "Yunfei Xie",
-          "Howard H. Qian",
-          "Shiyi Lan",
-          "Kaiyu Hang",
-          "Chen Wei"
-        ],
-        "category": "cs.CV · Spatial Reasoning & Geodesics",
-        "published_at": "2026-10-22T17:59:51Z",
-        "updated_at": "2026-10-22T17:59:51Z",
-        "landing_url": "https://arxiv.org/abs/2610.31670",
-        "pdf_url": "https://arxiv.org/pdf/2610.31670",
-        "discussion_url": "https://huggingface.co/papers/2610.31670",
-        "abstract": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that as representations improve, different modalities such as vision and language converge toward a shared statistical model of reality. We ask whether motion trajectories form another such modality: as embodied models become more capable, should their sensory representations converge toward the structure of physical motion? To examine this, we propose Sensorimotor Alignment (), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion. We find that correlates positively with downstream robot task success across embodied model families, making it a low-cost offline proxy for prioritizing models before closed-loop evaluation. can also identify promising vision-language model (VLM) backbones even before costly fine-tuning into vision-language-action models (VLAs). Beyond this correlation, offers representation-level explanations for phenomena observed in VLAs and world action models (WAMs). With , we extend PRH to embodied models and make sensorimotor alignment empirically measurable, offering insight into why an embodied model succeeds beyond its closed-loop success rate.",
-        "summary_25_words": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that…",
-        "keywords": [
-          "Spatial Reasoning & Geodesics",
-          "Representation & Manifolds",
-          "Video & Visual Diffusion"
-        ],
-        "three_pillars": {
-          "core_breakthrough": "Sensorimotor Alignment (), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion.",
-          "methodological_novelty": "Algorithmic topology and training formulation tailored for scalable deployment.",
-          "empirical_validation": "Demonstrated across standard evaluation suites with comparative benchmark analysis."
-        },
-        "paper_idea": {
-          "pitch": "Sensorimotor Alignment , a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion.",
-          "gap": "Current approaches in Spatial Reasoning & Geodesics struggle with scalability, high compute costs, and generalization on out-of-distribution tasks.",
-          "hypothesis": "If we deploy algorithmic topology and training formulation tailored for scalable deployment, then demonstrated across standard evaluation suites with comparative benchmark analysis will be achieved.",
-          "setup": "Baseline architecture augmented with algorithmic topology and training formulation tailored for scalable deployment; evaluated across Spatial Reasoning & Geodesics benchmark suites.",
-          "metric": "Statistically significant gain (>10% relative accuracy or efficiency improvement) over baseline."
-        },
-        "upvotes": 0
-      }
+      "tag": "Agents & tools",
+      "count": 1
+    },
+    {
+      "tag": "Generative models",
+      "count": 1
+    },
+    {
+      "tag": "Reasoning",
+      "count": 1
+    },
+    {
+      "tag": "Retrieval & RAG",
+      "count": 1
+    }
+  ],
+  "observations": [
+    {
+      "arxiv_id": "2609.33439",
+      "upvotes": 711,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2610.22471",
+      "upvotes": 481,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2609.33325",
+      "upvotes": 344,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2610.31329",
+      "upvotes": 248,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2609.33757",
+      "upvotes": 206,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2509.22186",
+      "upvotes": 181,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2610.26825",
+      "upvotes": 180,
+      "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2503.11576",
+      "upvotes": 180,
+      "observed_at": "2026-10-26T18:41:32+00:00"
     }
   ]
 }
