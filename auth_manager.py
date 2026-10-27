@@ -36,11 +36,16 @@ def init_auth_tables(connection: sqlite3.Connection) -> None:
         id TEXT PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
         password_hash TEXT NOT NULL,
+        name TEXT DEFAULT '',
         interests_json TEXT NOT NULL DEFAULT '[]',
         has_completed_onboarding INTEGER NOT NULL DEFAULT 0,
         is_verified INTEGER NOT NULL DEFAULT 0,
         created_at TEXT NOT NULL
     )""")
+    try:
+        connection.execute("ALTER TABLE users ADD COLUMN name TEXT DEFAULT ''")
+    except Exception:
+        pass
 
     connection.execute("""CREATE TABLE IF NOT EXISTS email_verifications (
         id TEXT PRIMARY KEY,
@@ -129,6 +134,7 @@ def register_user(
     connection: sqlite3.Connection,
     email: str,
     password: str,
+    name: str = "",
 ) -> tuple[dict[str, Any] | None, str]:
     """Sign up handler: validate format, check duplicates, enforce password complexity, store salted hash."""
     valid_email, email_err = validate_email_format(email)
@@ -151,21 +157,37 @@ def register_user(
     user_id = str(uuid4())
     pw_hash = hash_password(password)
     now_iso = datetime.now(timezone.utc).isoformat()
+    clean_name = (name or "").strip()
 
-    # Initialise record with has_completed_onboarding = False (0)
-    connection.execute(
-        """INSERT INTO users
-           (id, email, password_hash, interests_json, has_completed_onboarding, is_verified, created_at)
-           VALUES (?, ?, ?, '[]', 0, 0, ?)""",
-        (user_id, norm_email, pw_hash, now_iso),
-    )
+    try:
+        connection.execute(
+            """INSERT INTO users
+               (id, email, password_hash, name, interests_json, has_completed_onboarding, is_verified, created_at)
+               VALUES (?, ?, ?, ?, '[]', 0, 0, ?)""",
+            (user_id, norm_email, pw_hash, clean_name, now_iso),
+        )
+    except sqlite3.OperationalError:
+        connection.execute(
+            """INSERT INTO users
+               (id, email, password_hash, interests_json, has_completed_onboarding, is_verified, created_at)
+               VALUES (?, ?, ?, '[]', 0, 0, ?)""",
+            (user_id, norm_email, pw_hash, now_iso),
+        )
 
     # Issue initial verification OTP
     otp_code = create_email_verification_otp(connection, user_id, norm_email)
 
+    # Auto-provision user metadata ledger
+    try:
+        import user_metadata_manager
+        user_metadata_manager.get_user_metadata(connection, user_id)
+    except Exception:
+        pass
+
     user_record = {
         "id": user_id,
         "email": norm_email,
+        "name": clean_name,
         "interests": [],
         "has_completed_onboarding": False,
         "is_verified": False,
@@ -198,6 +220,15 @@ def login_user(
     if not verify_password(password, stored_hash):
         return None, "Invalid credentials. Please verify your email and password."
 
+    # Update metadata last_login_at
+    try:
+        import user_metadata_manager
+        meta = user_metadata_manager.get_user_metadata(connection, row["id"])
+        meta["account_details"]["last_login_at"] = datetime.now(timezone.utc).isoformat()
+        user_metadata_manager.save_user_metadata(connection, row["id"], meta)
+    except Exception:
+        pass
+
     interests = []
     try:
         interests = json.loads(row["interests_json"] or "[]")
@@ -207,6 +238,7 @@ def login_user(
     user_record = {
         "id": row["id"],
         "email": row["email"],
+        "name": row["name"] if "name" in row.keys() else "",
         "interests": interests,
         "has_completed_onboarding": bool(row["has_completed_onboarding"]),
         "is_verified": bool(row["is_verified"]),
@@ -314,6 +346,22 @@ def persist_user_onboarding_interests(
     return True, ""
 
 
+def update_user_field(
+    connection: sqlite3.Connection,
+    user_id: str,
+    field_name: str,
+    value: Any,
+) -> None:
+    """Safely update a column value for a given user."""
+    allowed_fields = {"has_completed_onboarding", "is_verified", "name", "interests_json"}
+    if field_name in allowed_fields:
+        connection.execute(f"UPDATE users SET {field_name}=? WHERE id=?", (value, user_id))
+        try:
+            connection.commit()
+        except Exception:
+            pass
+
+
 # ==============================================================================
 # Session Token Management
 # ==============================================================================
@@ -332,6 +380,10 @@ def create_session(
            VALUES (?, ?, ?, ?)""",
         (session_token, user_id, now_iso, expires_at),
     )
+    try:
+        connection.commit()
+    except Exception:
+        pass
 
     return session_token
 
@@ -363,6 +415,7 @@ def get_user_by_session(
     return {
         "id": row["id"],
         "email": row["email"],
+        "name": row["name"] if "name" in row.keys() else "",
         "interests": interests,
         "has_completed_onboarding": bool(row["has_completed_onboarding"]),
         "is_verified": bool(row["is_verified"]),
@@ -377,3 +430,108 @@ def destroy_session(
     """Revoke and delete session token upon logout."""
     if session_token:
         connection.execute("DELETE FROM user_sessions WHERE session_token=?", (session_token,))
+        try:
+            connection.commit()
+        except Exception:
+            pass
+
+
+# ==============================================================================
+# Demo Account Bypass System
+# ==============================================================================
+def get_or_create_demo_user(
+    connection: sqlite3.Connection,
+) -> tuple[dict[str, Any], str]:
+    """Retrieve or automatically initialize a verified demo research scientist user and issue a valid session token."""
+    demo_email = "demo.researcher@aster.ai"
+    row = connection.execute(
+        "SELECT * FROM users WHERE email=?", (demo_email,)
+    ).fetchone()
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    demo_interests = ["agent-evaluation", "llm-reasoning", "long-context-retrieval", "prompt-optimization"]
+
+    if row:
+        user_id = row["id"]
+        # Ensure demo user is verified and has completed onboarding so it goes directly to dashboard
+        try:
+            connection.execute(
+                """UPDATE users
+                   SET is_verified=1, has_completed_onboarding=1, name='Dr. Aster Demo',
+                       interests_json=COALESCE(NULLIF(interests_json, '[]'), ?)
+                   WHERE id=?""",
+                (json.dumps(demo_interests), user_id),
+            )
+        except sqlite3.OperationalError:
+            connection.execute(
+                """UPDATE users
+                   SET is_verified=1, has_completed_onboarding=1,
+                       interests_json=COALESCE(NULLIF(interests_json, '[]'), ?)
+                   WHERE id=?""",
+                (json.dumps(demo_interests), user_id),
+            )
+    else:
+        user_id = str(uuid4())
+        pw_hash = hash_password(secrets.token_hex(16))
+        demo_name = "Dr. Aster Demo"
+        try:
+            connection.execute(
+                """INSERT INTO users
+                   (id, email, password_hash, name, interests_json, has_completed_onboarding, is_verified, created_at)
+                   VALUES (?, ?, ?, ?, ?, 1, 1, ?)""",
+                (user_id, demo_email, pw_hash, demo_name, json.dumps(demo_interests), now_iso),
+            )
+        except sqlite3.OperationalError:
+            connection.execute(
+                """INSERT INTO users
+                   (id, email, password_hash, interests_json, has_completed_onboarding, is_verified, created_at)
+                   VALUES (?, ?, ?, ?, 1, 1, ?)""",
+                (user_id, demo_email, pw_hash, json.dumps(demo_interests), now_iso),
+            )
+
+    try:
+        connection.commit()
+    except Exception:
+        pass
+
+    # Auto-provision or update user metadata ledger
+    try:
+        import user_metadata_manager
+        meta = user_metadata_manager.get_user_metadata(connection, user_id)
+        if not meta.get("personal_details", {}).get("full_name"):
+            meta["personal_details"]["full_name"] = "Dr. Aster Demo"
+        if not meta.get("personal_details", {}).get("username"):
+            meta["personal_details"]["username"] = "demo.researcher"
+        meta["account_details"]["email_verified"] = True
+        meta["account_details"]["account_status"] = "Active (Demo Mode)"
+        meta["account_details"]["account_role"] = "Principal AI Researcher"
+        meta["account_details"]["last_login_at"] = now_iso
+        user_metadata_manager.save_user_metadata(connection, user_id, meta)
+    except Exception:
+        pass
+
+    session_token = create_session(connection, user_id)
+
+    updated_row = connection.execute("SELECT * FROM users WHERE id=?", (user_id,)).fetchone()
+    interests = []
+    try:
+        interests = json.loads(updated_row["interests_json"] or "[]")
+    except Exception:
+        interests = demo_interests
+
+    user_record = {
+        "id": updated_row["id"],
+        "email": updated_row["email"],
+        "name": updated_row["name"] if "name" in updated_row.keys() else "Dr. Aster Demo",
+        "interests": interests,
+        "has_completed_onboarding": True,
+        "is_verified": True,
+        "created_at": updated_row["created_at"],
+    }
+
+    try:
+        connection.commit()
+    except Exception:
+        pass
+
+    return user_record, session_token

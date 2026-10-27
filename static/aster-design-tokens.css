@@ -1,40 +1,40 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=DM+Mono:wght@400;500&display=swap');
 :root {
-  --aster-canvas: #090b12;
+  --bg: #080a10;
+  --ink: #f3f1ed;
+  --muted: #aaa9a8;
+  --quiet: #85878c;
+  --line: rgba(222, 226, 235, .14);
+  --line2: rgba(222, 226, 235, .22);
+  --orange: #f18a5e;
+  --orange-light: #f3a07d;
+  --violet: #b29cf4;
+  --cyan: #89d2e5;
+  --mint: #81c8a9;
+  --mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+  --serif: Georgia, 'Times New Roman', serif;
+  --ease: cubic-bezier(.2, .75, .25, 1);
+
+  --aster-canvas: #080a10;
   --aster-obsidian: #10131c;
   --aster-navy: #151d30;
-  --aster-panel: #171b25;
-  --aster-panel-raised: #202635;
-  --aster-line: rgba(214, 224, 244, .14);
-  --aster-line-strong: rgba(214, 224, 244, .22);
-  --aster-ice: #f3f5fb;
-  --aster-silver: #b3bdcc;
-  --aster-steel: #8794a8;
-  --aster-violet: #a990ff;
-  --aster-indigo: #6378e8;
-  --aster-cyan: #6ed3e8;
-  --aster-amber: #f0a078;
-  --aster-mint: #7bd0b3;
-  --aster-coral: #ff858c;
+  --aster-panel: #161a24;
+  --aster-panel-raised: #212634;
+  --aster-line: rgba(222, 226, 235, .14);
+  --aster-line-strong: rgba(222, 226, 235, .22);
+  --aster-ice: #f3f1ed;
+  --aster-silver: #aaa9a8;
+  --aster-steel: #85878c;
+  --aster-violet: #b29cf4;
+  --aster-cyan: #89d2e5;
+  --aster-amber: #f18a5e;
+  --aster-mint: #81c8a9;
   --aster-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --aster-font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --aster-font-mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
-  --aster-text-xs: 12px;
-  --aster-text-sm: 14px;
-  --aster-text-body: 16px;
-  --aster-text-lead: 19px;
-  --aster-text-title: clamp(32px, 3.2vw, 46px);
-  --aster-radius-frame: 22px;
+  --aster-radius-frame: 24px;
   --aster-radius-card: 18px;
   --aster-radius-control: 12px;
-  --aster-space-1: 8px;
-  --aster-space-2: 16px;
-  --aster-space-3: 24px;
-  --aster-space-4: 32px;
-  --aster-motion-fast: 160ms;
-  --aster-motion-base: 220ms;
-  --aster-motion-panel: 320ms;
 }
-
 </style>

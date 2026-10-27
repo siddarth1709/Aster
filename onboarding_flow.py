@@ -121,8 +121,8 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
                 col = cols[idx % len(cols)]
                 is_selected = pill in selected_set
                 btn_type = "primary" if is_selected else "secondary"
-                label = f"✓ {pill}" if is_selected else f"＋ {pill}"
-                if col.button(label, key=f"pill_{pill}", type=btn_type, use_container_width=True):
+                btn_icon = ":material/check:" if is_selected else ":material/add:"
+                if col.button(pill, icon=btn_icon, key=f"pill_{pill}", type=btn_type, use_container_width=True):
                     if is_selected:
                         selected_set.remove(pill)
                     else:
@@ -132,7 +132,7 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
 
     # Dynamic Custom Term Input
     with st.container(border=True):
-        st.markdown("##### ＋ Add Custom Algorithmic Focus or Subproblem")
+        st.markdown("##### Add Custom Algorithmic Focus or Subproblem")
         st.caption("Enter specialized methods, architectures, or datasets not listed above (e.g. `Speculative Decoding`, `GRPO`, `Flow Matching`).")
         custom_col1, custom_col2 = st.columns([3.2, 1])
         with custom_col1:
@@ -143,7 +143,7 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
                 key="custom_pill_input",
             )
         with custom_col2:
-            if st.button("Add Custom Pill", use_container_width=True, type="secondary"):
+            if st.button("Add Custom Pill", icon=":material/add:", use_container_width=True, type="secondary"):
                 clean_term = (custom_input or "").strip()
                 if clean_term:
                     # Validate term format: alphanumeric with hyphens, spaces, slashes
@@ -153,7 +153,7 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
                         st.session_state.onboarding_selected_pills = list(selected_set)
                         if formatted not in st.session_state.onboarding_custom_pills:
                             st.session_state.onboarding_custom_pills.append(formatted)
-                        st.toast(f"Added custom focus tag: {formatted}", icon="✨")
+                        st.toast(f"Added custom focus tag: {formatted}", icon=":material/auto_awesome:")
                         st.rerun()
 
     # One-Turn Refinement Check
@@ -168,15 +168,15 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
     # If user clicks submit while generic, trigger one-turn refinement
     if st.session_state.onboarding_refinement_active or (is_overly_generic and len(selected_set) > 0):
         with st.container(border=True):
-            st.warning("⚠️ **Your selection is broad.** Please calibrate with 2 to 3 specific algorithmic or subproblem focus areas to hone your precision radar against the literature.")
+            st.warning("**Your selection is broad.** Please calibrate with 2 to 3 specific algorithmic or subproblem focus areas to hone your precision radar against the literature.", icon=":material/info:")
             st.markdown("Select from these high-resolution subproblems:")
             ref_cols = st.columns(2)
             for r_idx, ref_pill in enumerate(REFINEMENT_SUBPROBLEM_PILLS):
                 r_col = ref_cols[r_idx % 2]
                 r_selected = ref_pill in selected_set
                 r_btn_type = "primary" if r_selected else "secondary"
-                r_label = f"✓ {ref_pill}" if r_selected else f"＋ {ref_pill}"
-                if r_col.button(r_label, key=f"ref_pill_{ref_pill}", type=r_btn_type, use_container_width=True):
+                r_btn_icon = ":material/check:" if r_selected else ":material/add:"
+                if r_col.button(ref_pill, icon=r_btn_icon, key=f"ref_pill_{ref_pill}", type=r_btn_type, use_container_width=True):
                     if r_selected:
                         selected_set.remove(ref_pill)
                     else:
@@ -192,11 +192,11 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
     with submit_col1:
         st.caption("Once calibrated, Aster will query arXiv, Hugging Face, Semantic Scholar, CrossRef, and PubMed strictly at this intersection.")
     with submit_col2:
-        if st.button("Calibrate & Launch Dashboard ↗", type="primary", use_container_width=True, disabled=len(selected_set) == 0):
+        if st.button("Calibrate & Launch Dashboard", icon=":material/arrow_forward:", type="primary", use_container_width=True, disabled=len(selected_set) == 0):
             # Enforce one-turn refinement rule
             if len(selected_set) < 2 and any(t.lower() in GENERIC_TAGS for t in selected_set):
                 st.session_state.onboarding_refinement_active = True
-                st.warning("Please choose at least 1 specific algorithmic or subproblem pill from the refinement suggestions above before advancing.")
+                st.warning("Please choose at least 1 specific algorithmic or subproblem pill from the refinement suggestions above before advancing.", icon=":material/info:")
                 st.rerun()
 
             # Persist the choices into the user's interest tags database array
@@ -213,5 +213,5 @@ def render_onboarding_page(user: dict[str, Any], connection: Any) -> None:
             st.session_state.authenticated_user = user
             st.session_state.onboarding_refinement_active = False
             st.session_state.nav_page = "Home"
-            st.toast("Research preferences calibrated! Welcome to Aster.", icon="🚀")
+            st.toast("Research preferences calibrated! Welcome to Aster.", icon=":material/check_circle:")
             st.rerun()
