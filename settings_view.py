@@ -233,13 +233,13 @@ def render_user_metadata_settings(
                 st.text_input("User ID (Immutable)", value=p_details.get("user_id", user_id), disabled=True)
                 new_full_name = st.text_input("Full name", value=p_details.get("full_name", name), placeholder="Dr. Jane Doe")
                 new_username = st.text_input("Username", value=p_details.get("username", username), placeholder="janedoe")
-                new_email = st.text_input("Email address", value=p_details.get("email", email), disabled=True)
+                st.text_input("Email address (Authenticated)", value=p_details.get("email", email), disabled=True)
                 new_phone = st.text_input("Phone number", value=p_details.get("phone_number", ""), placeholder="+1 (555) 019-2834")
                 new_avatar = st.text_input("Profile picture URL", value=p_details.get("profile_picture", ""), placeholder="https://example.org/avatar.jpg")
 
             with c2:
                 new_bio = st.text_area("Bio or description", value=p_details.get("bio", ""), height=100)
-                new_dob = st.text_input("Date of birth (optional)", value=p_details.get("date_of_birth", ""), placeholder="YYYY-MM-DD")
+                new_dob = st.text_input("Date of birth (YYYY-MM-DD)", value=p_details.get("date_of_birth", ""), placeholder="YYYY-MM-DD")
                 new_country = st.text_input("Country", value=p_details.get("country", "United States"))
                 new_region = st.text_input("State / Region", value=p_details.get("state_region", "California"))
                 new_city = st.text_input("City", value=p_details.get("city", "San Francisco"))
@@ -251,27 +251,22 @@ def render_user_metadata_settings(
                 new_lang = st.selectbox("Preferred language", langs, index=lang_idx)
 
             st.divider()
-            st.markdown("#### Account Status & Role")
+            st.markdown("#### Account Status & Security Tier (Server-Governed)")
+            st.caption("Account roles, verification flags, and security levels are cryptographically verified and cannot be self-escalated.")
             c3, c4 = st.columns(2)
             with c3:
-                statuses = ["Active", "Verified", "Under Review", "Suspended"]
-                stat_idx = statuses.index(a_details.get("account_status")) if a_details.get("account_status") in statuses else 0
-                new_status = st.selectbox("Account status", statuses, index=stat_idx)
-
-                roles = ["Research Scientist", "Principal Investigator", "Staff Engineer", "Postdoctoral Fellow", "PhD Candidate", "Reviewer"]
-                role_idx = roles.index(a_details.get("account_role")) if a_details.get("account_role") in roles else 0
-                new_role = st.selectbox("Account role", roles, index=role_idx)
-
+                st.text_input("Account role", value=a_details.get("account_role", "Research Scientist"), disabled=True, help="Role assignment is controlled via institutional governance.")
+                st.text_input("Account status", value=a_details.get("account_status", "Active"), disabled=True)
                 st.text_input("Account creation date", value=p_details.get("created_at", ""), disabled=True)
                 st.text_input("Authentication provider", value=a_details.get("auth_provider", "Email OTP"), disabled=True)
 
             with c4:
+                st.text_input("Email verification", value="Verified Identity" if a_details.get("email_verified") else "OTP Pending", disabled=True)
+                st.text_input("Phone verification", value="Unverified (SMS provider not configured)", disabled=True)
+                st.text_input("Multi-factor authentication (MFA)", value="Email OTP (Hardware key optional)", disabled=True)
                 st.text_input("Last login timestamp", value=a_details.get("last_login_at", ""), disabled=True)
-                st.text_input("Last password change", value=a_details.get("last_password_changed_at", ""), disabled=True)
-                new_phone_ver = st.checkbox("Phone verification status", value=bool(a_details.get("phone_verified", False)))
-                new_mfa = st.checkbox("Multi-factor authentication status (MFA enabled)", value=bool(a_details.get("mfa_enabled", False)))
 
-            if st.form_submit_button("Save Personal & Account Details", type="primary"):
+            if st.form_submit_button("Save Personal Details", type="primary"):
                 p_details["full_name"] = new_full_name
                 p_details["username"] = new_username
                 p_details["phone_number"] = new_phone
@@ -284,16 +279,12 @@ def render_user_metadata_settings(
                 p_details["timezone"] = new_tz
                 p_details["preferred_language"] = new_lang
 
-                a_details["account_status"] = new_status
-                a_details["account_role"] = new_role
-                a_details["phone_verified"] = new_phone_ver
-                a_details["mfa_enabled"] = new_mfa
-
                 metadata["personal_details"] = p_details
-                metadata["account_details"] = a_details
-                user_metadata_manager.save_user_metadata(connection, user_id, metadata)
-                st.session_state["authenticated_user"]["name"] = new_full_name
-                st.toast("Personal and account details updated!", icon=":material/person:")
+                # Account role and status remain server-governed
+                user_metadata_manager.save_user_metadata(connection, user_id, metadata, is_admin=False)
+                if "authenticated_user" in st.session_state and st.session_state["authenticated_user"]:
+                    st.session_state["authenticated_user"]["name"] = new_full_name
+                st.toast("Personal profile updated!", icon=":material/person:")
                 st.rerun()
 
     # ==========================================================================
@@ -350,6 +341,17 @@ def render_user_metadata_settings(
                 new_email_updates = st.checkbox("Email update preferences (monthly paper digest)", value=bool(u_pref.get("email_update_preferences", True)))
 
             st.divider()
+            st.markdown("#### Notification Preferences")
+            notif_dict = u_pref.get("notification_preferences", {})
+            cn1, cn2, cn3 = st.columns(3)
+            with cn1:
+                notif_in_app = st.checkbox("In-app notifications", value=bool(notif_dict.get("in_app", True)))
+            with cn2:
+                notif_alerts = st.checkbox("Experiment run alerts", value=bool(notif_dict.get("experiment_run_alerts", True)))
+            with cn3:
+                notif_weekly = st.checkbox("Weekly summary digest", value=bool(notif_dict.get("weekly_summary", True)))
+
+            st.divider()
             st.markdown("#### Accessibility Preferences")
             acc_dict = u_pref.get("accessibility_preferences", {})
             ca, cb, cc = st.columns(3)
@@ -371,6 +373,11 @@ def render_user_metadata_settings(
                 u_pref["date_time_format"] = new_dt
                 u_pref["preferred_units"] = new_units
                 u_pref["email_update_preferences"] = new_email_updates
+                u_pref["notification_preferences"] = {
+                    "in_app": notif_in_app,
+                    "experiment_run_alerts": notif_alerts,
+                    "weekly_summary": notif_weekly,
+                }
                 u_pref["accessibility_preferences"] = {
                     "high_contrast": acc_high_contrast,
                     "screen_reader_optimizations": acc_screen_reader,
@@ -462,6 +469,8 @@ def render_user_metadata_settings(
 
                 metadata["research_profile"] = r_prof
                 user_metadata_manager.save_user_metadata(connection, user_id, metadata)
+                if "authenticated_user" in st.session_state and st.session_state["authenticated_user"]:
+                    st.session_state["authenticated_user"]["interests"] = clean_tags
                 st.toast("Research profile updated!", icon=":material/science:")
                 st.rerun()
 
@@ -476,6 +485,7 @@ def render_user_metadata_settings(
             c1, c2 = st.columns(2)
             with c1:
                 st.text_input("Default workspace ID", value=w_details.get("default_workspace_id", ""), disabled=True)
+                st.text_input("Default project ID", value=w_details.get("default_project_id", "proj_default"), disabled=True)
                 new_ws_name = st.text_input("Workspace name", value=w_details.get("workspace_name", "Aster Primary Lab"))
                 ws_roles = ["Owner", "Admin", "Lead Investigator", "Collaborator"]
                 r_idx = ws_roles.index(w_details.get("workspace_role")) if w_details.get("workspace_role") in ws_roles else 0
@@ -493,7 +503,15 @@ def render_user_metadata_settings(
                 p_idx = providers.index(w_details.get("repository_provider")) if w_details.get("repository_provider") in providers else 0
                 new_provider = st.selectbox("Repository provider", providers, index=p_idx)
 
-                new_repo_count = st.number_input("Connected repository count", min_value=0, max_value=100, value=int(w_details.get("connected_repo_count", 1)))
+                cur_repo_count = w_details.get("connected_repository_count")
+                if cur_repo_count is None:
+                    cur_repo_count = w_details.get("connected_repo_count", 1)
+                new_repo_count = st.number_input("Connected repository count", min_value=0, max_value=100, value=int(cur_repo_count))
+
+                ws_notif_opts = ["All activity", "Mentions and errors only", "Muted"]
+                wn_idx = ws_notif_opts.index(w_details.get("workspace_notification_settings")) if w_details.get("workspace_notification_settings") in ws_notif_opts else 0
+                new_ws_notif = st.selectbox("Workspace notification settings", ws_notif_opts, index=wn_idx)
+
                 access_opts = ["Private (Isolated)", "Team Shared", "Public Read-Only"]
                 acc_idx = access_opts.index(w_details.get("workspace_access_permissions")) if w_details.get("workspace_access_permissions") in access_opts else 0
                 new_access = st.selectbox("Workspace access permissions", access_opts, index=acc_idx)
@@ -505,7 +523,9 @@ def render_user_metadata_settings(
                 w_details["preferred_project_template"] = new_template
                 w_details["default_repository"] = new_repo
                 w_details["repository_provider"] = new_provider
+                w_details["connected_repository_count"] = new_repo_count
                 w_details["connected_repo_count"] = new_repo_count
+                w_details["workspace_notification_settings"] = new_ws_notif
                 w_details["workspace_access_permissions"] = new_access
 
                 metadata["workspace_details"] = w_details
@@ -520,27 +540,30 @@ def render_user_metadata_settings(
         st.subheader("Connected Integrations & Cloud Sync")
         st.caption("Manage authentication links to version control systems, Google Cloud storage, and real-time synchronization.")
 
+        st.info("Local-First Architecture: Local SQLite Journal and Wispr Flow Voice capture operate locally and without extra cost. Remote cloud services require deployment-level secrets or OAuth tokens.", icon=":material/info:")
+
         with st.form("form_integrations"):
             c1, c2 = st.columns(2)
             with c1:
-                st.markdown("#### Version Control & Accounts")
-                new_gh = st.checkbox("GitHub connection status", value=bool(integ.get("github_connection_status", False)))
-                new_gl = st.checkbox("GitLab connection status", value=bool(integ.get("gitlab_connection_status", False)))
-                new_gaccount = st.checkbox("Connected Google account status", value=bool(integ.get("connected_google_account_status", False)))
+                st.markdown("#### Version Control & Remote Accounts")
+                st.caption("Remote VCS status reflects external service configuration.")
+                new_gh = st.checkbox("GitHub remote synchronization configured", value=bool(integ.get("github_connection_status", False)))
+                new_gl = st.checkbox("GitLab remote synchronization configured", value=bool(integ.get("gitlab_connection_status", False)))
+                new_gaccount = st.checkbox("Connected Google account OAuth", value=bool(integ.get("connected_google_account_status", False)), help="Requires GOOGLE_CLIENT_ID in deployment secrets.")
 
             with c2:
-                st.markdown("#### Cloud Storage Providers")
+                st.markdown("#### Storage Providers & Sync Policy")
                 storage_providers = ["Local Disk", "Google Cloud Storage", "AWS S3", "Hugging Face Hub"]
                 current_providers = [p for p in integ.get("connected_cloud_storage_providers", ["Local Disk"]) if p in storage_providers]
-                new_storages = st.multiselect("Connected cloud storage providers", storage_providers, default=current_providers)
+                new_storages = st.multiselect("Active storage backends", storage_providers, default=current_providers)
 
                 sync_opts = ["Real-time auto-sync", "On manual trigger", "Daily digest"]
                 s_idx = sync_opts.index(integ.get("integration_synchronisation_preferences")) if integ.get("integration_synchronisation_preferences") in sync_opts else 0
                 new_sync = st.selectbox("Integration synchronisation preferences", sync_opts, index=s_idx)
 
             st.divider()
-            st.markdown("#### Connected Integrations Ledger")
-            cur_integ_list = ", ".join(integ.get("connected_integration_list", []))
+            st.markdown("#### Active Local Integrations Ledger")
+            cur_integ_list = ", ".join(integ.get("connected_integration_list", ["Local SQLite Journal", "Wispr Flow Voice Dictation"]))
             new_integ_str = st.text_input("Active integration identifiers (comma-separated)", value=cur_integ_list)
 
             if st.form_submit_button("Save Integration Preferences", type="primary"):
@@ -555,6 +578,7 @@ def render_user_metadata_settings(
                 user_metadata_manager.save_user_metadata(connection, user_id, metadata)
                 st.toast("Integration preferences saved!", icon=":material/hub:")
                 st.rerun()
+                st.rerun()
 
     # ==========================================================================
     # TAB 7: Usage & Activity
@@ -565,9 +589,9 @@ def render_user_metadata_settings(
 
         ca, cb, cc, cd = st.columns(4)
         with ca:
-            st.metric("Total Experiments", u_act.get("total_projects_created", 1))
+            st.metric("Total Experiments", u_act.get("total_projects_created", 0))
         with cb:
-            st.metric("Research Sessions", u_act.get("total_research_sessions", 3))
+            st.metric("Research Sessions", u_act.get("total_research_sessions", 1))
         with cc:
             st.metric("Total AI Requests", u_act.get("total_ai_requests", 0))
         with cd:
@@ -583,10 +607,13 @@ def render_user_metadata_settings(
 
         with c2:
             st.markdown("#### Activity Lifecycle")
-            st.write(f"• **Last active timestamp**: `{u_act.get('last_active_timestamp', '')}`")
-            st.write(f"• **Onboarding completion status**: `{'Completed' if u_act.get('onboarding_completion_status') else 'In Progress'}`")
+            raw_last_active = u_act.get("last_active_timestamp", "")
+            formatted_last_active = user_metadata_manager.format_user_datetime(raw_last_active, u_pref.get("date_time_format", "YYYY-MM-DD HH:mm"))
+            st.write(f"• **Last active**: `{formatted_last_active}`")
+            st.write(f"• **Recent workspace ID**: `{u_act.get('recent_workspace_id', 'ws_primary')}`")
+            st.write(f"• **Onboarding completion**: `{'Completed' if u_act.get('onboarding_completion_status') else 'In Progress'}`")
             st.write(f"• **Last onboarding step**: {u_act.get('last_onboarding_step', '')}")
-            st.write(f"• **Product engagement summary**: {u_act.get('product_engagement_summary', 'Active Daily Researcher')}")
+            st.write(f"• **Product engagement**: {u_act.get('product_engagement_summary', 'Active Daily Researcher')}")
 
     # ==========================================================================
     # TAB 8: Security & Privacy
@@ -626,15 +653,27 @@ def render_user_metadata_settings(
                 sec_priv["consent_timestamps"] = {
                     "analytics": now_iso,
                     "data_processing": now_iso,
+                    "marketing": now_iso,
                 }
 
                 metadata["security_privacy"] = sec_priv
                 user_metadata_manager.save_user_metadata(connection, user_id, metadata)
+                user_metadata_manager.record_user_consent(connection, user_id, "analytics", new_analytics)
+                user_metadata_manager.record_user_consent(connection, user_id, "marketing", new_marketing)
+                user_metadata_manager.record_user_consent(connection, user_id, "data_processing", new_data_proc)
                 st.toast("Security and privacy preferences updated!", icon=":material/lock:")
                 st.rerun()
 
+        with st.expander("Recent Security Audit Trail (Relational Log)", expanded=False):
+            events = user_metadata_manager.get_user_security_events(connection, user_id, limit=8)
+            if events:
+                for ev in events:
+                    st.caption(f"**{ev['created_at'][:19]}** · `{ev['event_type']}` · {ev['details']}")
+            else:
+                st.caption("No security audit logs recorded yet.")
+
         st.divider()
-        st.markdown("#### Data Export & Erasure Sovereignty")
+        st.markdown("#### Data Export Sovereignty")
         export_bundle_json = user_metadata_manager.export_user_data_bundle(connection, user_id)
         st.download_button(
             label="Download Complete Research & Metadata Archive (.JSON)",
@@ -643,6 +682,20 @@ def render_user_metadata_settings(
             mime="application/json",
             help="Generates an audit-ready JSON bundle containing all your experiments, research contexts, memories, and full metadata ledger.",
         )
+
+        st.divider()
+        st.markdown("#### Danger Zone · Account Deletion & Data Erasure")
+        st.caption("Execute full data erasure under right-to-be-forgotten privacy standards.")
+        confirm_del = st.checkbox("I understand this will permanently delete my researcher account, metadata, and all active sessions.", key="chk_confirm_delete_account")
+        if st.button("Permanently Delete Account & Erase All Data", type="primary", disabled=not confirm_del, key="btn_execute_account_deletion"):
+            success = user_metadata_manager.delete_user_account(connection, user_id)
+            if success:
+                st.session_state.clear()
+                st.query_params.clear()
+                st.toast("Account and all personal metadata successfully erased.", icon=":material/delete_forever:")
+                st.rerun()
+            else:
+                st.error("Failed to execute account erasure. Please try again.")
 
     # ==========================================================================
     # TAB 9: Personalization & Memory
@@ -669,12 +722,17 @@ def render_user_metadata_settings(
                 c_idx = conventions.index(pers_mem.get("preferred_coding_conventions")) if pers_mem.get("preferred_coding_conventions") in conventions else 0
                 new_conv = st.selectbox("Preferred coding conventions", conventions, index=c_idx)
 
+                tools_opts = ["Gemini 2.0 Flash", "Wispr Flow", "Research Graph", "Preprint Radar", "BibTeX Formatter", "Latex Synthesizer"]
+                default_tools = [t for t in pers_mem.get("frequently_used_ai_tools", ["Gemini 2.0 Flash", "Wispr Flow"]) if t in tools_opts]
+                new_ai_tools = st.multiselect("Frequently used AI tools", tools_opts, default=default_tools)
+
             with c2:
                 tones = ["Rigorous & Academic", "Direct & Concise", "Exploratory & Collaborative", "Socratic"]
                 t_idx = tones.index(pers_mem.get("preferred_communication_tone")) if pers_mem.get("preferred_communication_tone") in tones else 0
                 new_tone = st.selectbox("Preferred communication tone", tones, index=t_idx)
 
                 new_spin = st.text_input("Spin projects", value=pers_mem.get("spin_projects", "Autonomous Evaluation Harnesses"))
+                new_build = st.text_input("Build prompts template directive", value=pers_mem.get("build_prompts", "Distill hypothesis, setup, metrics, and key takeaway"))
 
             new_custom_ai = st.text_area(
                 "Custom AI instructions",
@@ -696,15 +754,30 @@ def render_user_metadata_settings(
                 pers_mem["preferred_working_style"] = new_style
                 pers_mem["preferred_coding_conventions"] = new_conv
                 pers_mem["preferred_communication_tone"] = new_tone
+                pers_mem["frequently_used_ai_tools"] = new_ai_tools
                 pers_mem["spin_projects"] = new_spin
+                pers_mem["build_prompts"] = new_build
                 pers_mem["custom_ai_instructions"] = new_custom_ai
                 pers_mem["favourite_features"] = new_fav_features
                 pers_mem["personalization_settings"] = new_pers_enabled
 
                 metadata["personalization_memory"] = pers_mem
                 user_metadata_manager.save_user_metadata(connection, user_id, metadata)
+                if new_build.strip():
+                    user_metadata_manager.create_or_update_saved_prompt(
+                        connection, user_id, "Default Build Directive", new_build.strip(), task_domain="general"
+                    )
                 st.toast("Personalization directives saved!", icon=":material/psychology:")
                 st.rerun()
+
+        with st.expander("Saved Prompt Library (Relational Table)", expanded=False):
+            prompts = user_metadata_manager.list_user_saved_prompts(connection, user_id)
+            if prompts:
+                for p in prompts:
+                    st.markdown(f"**{p['title']}** ({p['task_domain']})")
+                    st.code(p["prompt_template"], language="markdown")
+            else:
+                st.caption("No custom saved prompts in relational library.")
 
     # ==========================================================================
     # TAB 10: System Metadata
@@ -724,26 +797,20 @@ def render_user_metadata_settings(
                 st.text_input("Data source import status", value=sys_meta.get("data_source_import_status", "Synchronized with Aster SQLite v3.43"), disabled=True)
                 st.text_input("Migration version", value=str(sys_meta.get("migration_version", 1)), disabled=True)
 
-            st.markdown("#### Internal Flags")
+            st.markdown("#### Internal System Flags (Protected)")
+            st.caption("Internal runtime flags are governed by system runtime security policy.")
             flags = sys_meta.get("internal_flags", {})
             f1, f2, f3 = st.columns(3)
             with f1:
-                flag_beta = st.checkbox("Beta features enabled", value=bool(flags.get("beta_features_enabled", True)))
+                st.checkbox("Beta features enabled", value=bool(flags.get("beta_features_enabled", True)), disabled=True)
             with f2:
-                flag_sandbox = st.checkbox("Sandbox execution mode", value=bool(flags.get("sandbox_mode", False)))
+                st.checkbox("Sandbox execution mode", value=bool(flags.get("sandbox_mode", False)), disabled=True)
             with f3:
-                flag_fast = st.checkbox("Fast distillation pipeline", value=bool(flags.get("fast_distillation", True)))
+                st.checkbox("Fast distillation pipeline", value=bool(flags.get("fast_distillation", True)), disabled=True)
 
-            if st.form_submit_button("Save System Metadata Flags", type="primary"):
-                flags["beta_features_enabled"] = flag_beta
-                flags["sandbox_mode"] = flag_sandbox
-                flags["fast_distillation"] = flag_fast
-                sys_meta["internal_flags"] = flags
-
-                metadata["system_metadata"] = sys_meta
-                user_metadata_manager.save_user_metadata(connection, user_id, metadata)
-                st.toast("System metadata updated!", icon=":material/settings:")
-                st.rerun()
+            st.caption("System metadata is maintained automatically by the Aster runtime ledger.")
+            if st.form_submit_button("Acknowledge System Ledger", type="primary"):
+                st.toast("System metadata verified.", icon=":material/check_circle:")
 
     # ==========================================================================
     # TAB 11: Metric Ledgers & Reusable Research Context

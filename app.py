@@ -128,26 +128,84 @@ def get_user_ai_model(
     default_name: str = "gemini-2.0-flash",
     generation_config: dict[str, Any] | None = None,
     system_instruction: str | None = None,
+    task_domain: str | None = None,
 ) -> genai.GenerativeModel:
     user = st.session_state.get("authenticated_user") or {}
     user_id = user.get("id")
     pref_model = default_name
     temperature = 0.20
-    custom_inst = None
+    custom_directives: list[str] = []
+
     if user_id:
         try:
             with connect_db() as connection:
                 meta = user_metadata_manager.get_user_metadata(connection, user_id)
                 ai_pref = meta.get("ai_preferences", {})
                 pers_mem = meta.get("personalization_memory", {})
-                configured = ai_pref.get("preferred_ai_model", "")
-                if configured and str(configured).startswith("gemini-"):
-                    pref_model = str(configured)
+                r_prof = meta.get("research_profile", {})
+                u_act = meta.get("usage_activity", {})
+
+                # Check usage limits
+                monthly_limit = int(ai_pref.get("ai_usage_limits", 1000))
+                monthly_usage = int(u_act.get("monthly_ai_usage", 0))
+                if monthly_usage >= monthly_limit:
+                    st.warning(f"Monthly AI request limit reached ({monthly_usage}/{monthly_limit} requests). Update usage limits in Settings if needed.")
+
+                # Select domain-specific or preferred model
+                candidate_model = ""
+                if task_domain == "research":
+                    candidate_model = ai_pref.get("default_model_research", "")
+                elif task_domain == "coding":
+                    candidate_model = ai_pref.get("default_model_coding", "")
+                elif task_domain == "analysis":
+                    candidate_model = ai_pref.get("default_model_analysis", "")
+
+                if not candidate_model:
+                    candidate_model = ai_pref.get("preferred_ai_model", "")
+
+                if candidate_model and str(candidate_model).startswith("gemini-"):
+                    pref_model = str(candidate_model)
+
                 temperature = float(ai_pref.get("default_temperature", 0.20))
-                user_instructions = pers_mem.get("saved_user_instructions", "").strip()
-                ai_custom = pers_mem.get("custom_ai_instructions", "").strip()
-                if user_instructions or ai_custom:
-                    custom_inst = f"{user_instructions} {ai_custom}".strip()
+
+                # Personalization & System Directives
+                if pers_mem.get("personalization_settings", True):
+                    user_instructions = pers_mem.get("saved_user_instructions", "").strip()
+                    if user_instructions:
+                        custom_directives.append(f"Saved Directives: {user_instructions}")
+
+                    ai_custom = pers_mem.get("custom_ai_instructions", "").strip()
+                    if ai_custom:
+                        custom_directives.append(f"Custom AI Directives: {ai_custom}")
+
+                    style = pers_mem.get("preferred_working_style", "").strip()
+                    if style:
+                        custom_directives.append(f"Working Style: {style}")
+
+                    conventions = pers_mem.get("preferred_coding_conventions", "").strip()
+                    if conventions:
+                        custom_directives.append(f"Coding Conventions: {conventions}")
+
+                    tone = pers_mem.get("preferred_communication_tone", "").strip()
+                    if tone:
+                        custom_directives.append(f"Communication Tone: {tone}")
+
+                    length = ai_pref.get("response_length_preference", "").strip()
+                    if length:
+                        custom_directives.append(f"Response Length Preference: {length}")
+
+                    reasoning = ai_pref.get("reasoning_detail_preference", "").strip()
+                    if reasoning:
+                        custom_directives.append(f"Reasoning Detail Preference: {reasoning}")
+
+                    citation = r_prof.get("preferred_citation_style", "").strip()
+                    if citation:
+                        custom_directives.append(f"Citation Style: {citation}")
+
+                    output_fmt = r_prof.get("preferred_output_formats", "").strip()
+                    if output_fmt:
+                        custom_directives.append(f"Output Format Preference: {output_fmt}")
+
                 user_metadata_manager.record_user_activity(connection, user_id, "ai_request")
         except Exception:
             pass
@@ -156,15 +214,33 @@ def get_user_ai_model(
     if "temperature" not in config:
         config["temperature"] = temperature
 
-    instructions = system_instruction
-    if custom_inst:
-        instructions = f"{system_instruction}\n\nUSER PREFERENCES & MEMORY:\n{custom_inst}" if system_instruction else f"USER PREFERENCES & MEMORY:\n{custom_inst}"
+    instructions = system_instruction or ""
+    if custom_directives:
+        directive_block = "\n".join(custom_directives)
+        if instructions:
+            instructions = f"{instructions}\n\nUSER PERSONALIZATION & SYSTEM DIRECTIVES:\n{directive_block}"
+        else:
+            instructions = f"USER PERSONALIZATION & SYSTEM DIRECTIVES:\n{directive_block}"
 
     kwargs = {"generation_config": config}
     if instructions:
         kwargs["system_instruction"] = instructions
 
     return genai.GenerativeModel(pref_model, **kwargs)
+
+
+def get_user_datetime_format() -> str:
+    """Retrieve user date_time_format preference from metadata ledger."""
+    user = st.session_state.get("authenticated_user") or {}
+    user_id = user.get("id")
+    if user_id:
+        try:
+            with connect_db() as connection:
+                meta = user_metadata_manager.get_user_metadata(connection, user_id)
+                return meta.get("user_preferences", {}).get("date_time_format", "YYYY-MM-DD HH:mm")
+        except Exception:
+            pass
+    return "YYYY-MM-DD HH:mm"
 
 
 def render_settings_page() -> None:
@@ -1033,10 +1109,25 @@ def insert_item(item: dict) -> str | None:
     patterns = values.get("ai_patterns_json", values.get("ai_patterns", {}))
     values["ai_patterns_json"] = json.dumps(patterns if isinstance(patterns, dict) else {}, ensure_ascii=False)
     with connect_db() as connection:
+        user = st.session_state.get("authenticated_user") or {}
+        uid = user.get("id")
+        cols = list(columns)
+        try:
+            exp_cols = {row[1] for row in connection.execute("PRAGMA table_info(experiments)")}
+            if "user_id" in exp_cols and uid:
+                cols.append("user_id")
+                values["user_id"] = uid
+        except Exception:
+            pass
         connection.execute(
-            f"INSERT INTO experiments ({','.join(columns)}) VALUES ({','.join('?' for _ in columns)})",
-            tuple(values.get(column, "") for column in columns),
+            f"INSERT INTO experiments ({','.join(cols)}) VALUES ({','.join('?' for _ in cols)})",
+            tuple(values.get(column, "") for column in cols),
         )
+        if uid:
+            try:
+                user_metadata_manager.record_user_activity(connection, uid, "new_project")
+            except Exception:
+                pass
         count = int(connection.execute("SELECT COUNT(*) FROM experiments").fetchone()[0])
         row = connection.execute("SELECT value FROM app_meta WHERE key='coach_last_scheduled_count'").fetchone()
         last_scheduled = int(row[0]) if row else count
@@ -1438,6 +1529,13 @@ def direct_voice_capture(notes_key: str, research_context: str, related_ids: lis
             with st.spinner("No new dictation detected. Structuring with Gemini…"):
                 try:
                     save_structured_draft(notes, research_context, related_ids)
+                    user = st.session_state.get("authenticated_user") or {}
+                    if user.get("id"):
+                        try:
+                            with connect_db() as connection:
+                                user_metadata_manager.record_user_activity(connection, user["id"], "voice_notes")
+                        except Exception:
+                            pass
                     st.session_state.direct_voice_active = False
                     st.rerun()
                 except Exception as exc:
@@ -1538,7 +1636,15 @@ def structure_with_gemini(notes: str, research_context: str = "", linked_experim
     model = get_user_ai_model(
         "gemini-2.0-flash",
         generation_config={"response_mime_type": "application/json"},
+        task_domain="research",
     )
+    user = st.session_state.get("authenticated_user") or {}
+    if user.get("id"):
+        try:
+            with connect_db() as connection:
+                user_metadata_manager.record_user_activity(connection, user["id"], "structuring")
+        except Exception:
+            pass
     custom_metric_names = load_custom_metrics()
     previous = [compact_experiment(item) for item in (linked_experiments or [])]
     pattern_shape = {
@@ -1632,7 +1738,15 @@ def summarize_experiments(items: list[dict]) -> dict:
     model = get_user_ai_model(
         "gemini-2.0-flash",
         generation_config={"response_mime_type": "application/json"},
+        task_domain="analysis",
     )
+    user = st.session_state.get("authenticated_user") or {}
+    if user.get("id"):
+        try:
+            with connect_db() as connection:
+                user_metadata_manager.record_user_activity(connection, user["id"], "comparisons")
+        except Exception:
+            pass
     prompt = f"""Act as a proactive AI research advisor who has read the user's experiment journal and is up to date on current AI engineering practice.
 Return valid JSON with exactly these keys, each containing a concise array of strings:
 themes, successes, blockers, insights, next_experiments, blind_spots, evaluation_methods, reusable_tools_or_agents.
@@ -1668,7 +1782,15 @@ def compare_with_gemini(items: list[dict]) -> dict:
     model = get_user_ai_model(
         "gemini-2.0-flash",
         generation_config={"response_mime_type": "application/json"},
+        task_domain="analysis",
     )
+    user = st.session_state.get("authenticated_user") or {}
+    if user.get("id"):
+        try:
+            with connect_db() as connection:
+                user_metadata_manager.record_user_activity(connection, user["id"], "comparisons")
+        except Exception:
+            pass
     prompt = f"""Compare selected experiments as an AI engineering reviewer.
 Return valid JSON with exactly these keys. Each value must be a concise array of strings:
 hypothesis_approach, setup_hyperparameters, results_metrics, modern_agent_metrics, performance, joint_insights, follow_up_relationships, next_steps.
@@ -1691,7 +1813,15 @@ def semantic_search_with_gemini(query: str, items: list[dict]) -> list[dict]:
     model = get_user_ai_model(
         "gemini-2.0-flash",
         generation_config={"response_mime_type": "application/json"},
+        task_domain="analysis",
     )
+    user = st.session_state.get("authenticated_user") or {}
+    if user.get("id"):
+        try:
+            with connect_db() as connection:
+                user_metadata_manager.record_user_activity(connection, user["id"], "comparisons")
+        except Exception:
+            pass
     prompt = f"""Find experiments relevant to this natural-language search, using semantic meaning rather than exact keyword overlap.
 Return valid JSON in this shape: {{"results": [{{"id": "experiment-id", "reason": "brief relevance explanation"}}]}}.
 Rank from most to least relevant. Include only relevant IDs from the supplied records, once each. Do not create IDs or facts.
@@ -1753,7 +1883,14 @@ def generate_mermaid_diagram(data_context: dict | list | str, diagram_type: str)
         raise RuntimeError("Add your Gemini API key in Settings before generating diagrams.")
 
     genai.configure(api_key=api_key)
-    model = get_user_ai_model("gemini-2.0-flash")
+    model = get_user_ai_model("gemini-2.0-flash", task_domain="coding")
+    user = st.session_state.get("authenticated_user") or {}
+    if user.get("id"):
+        try:
+            with connect_db() as connection:
+                user_metadata_manager.record_user_activity(connection, user["id"], "diagrams")
+        except Exception:
+            pass
 
     context_str = json.dumps(data_context, indent=2, ensure_ascii=False) if isinstance(data_context, (dict, list)) else str(data_context)
 
@@ -2440,6 +2577,13 @@ def render_daily_papers() -> None:
         st.caption("A daily snapshot of Hugging Face’s trending AI papers, distilled when the free Gemini endpoint is available.")
     with head_col2:
         if st.button("Refresh feed", icon=":material/refresh:", key="sync_preprints_btn", help="Fetch live daily preprints from Hugging Face & arXiv"):
+            user = st.session_state.get("authenticated_user") or {}
+            if user.get("id"):
+                try:
+                    with connect_db() as conn:
+                        user_metadata_manager.record_user_activity(conn, user["id"], "paper_radar")
+                except Exception:
+                    pass
             with st.spinner("Fetching latest trending preprints & research papers..."):
                 research_engine.run_discovery_pipeline()
             st.toast("Feed refreshed with latest peer-reviewed research papers!")
@@ -3370,7 +3514,8 @@ def show_dashboard_page() -> None:
                 title_col, action_col = st.columns([5, 1])
                 title_col.markdown(f'<p class="card-title">{escape(item.get("title", "Untitled"))}</p>', unsafe_allow_html=True)
                 try:
-                    logged = datetime.fromisoformat(item["created_at"]).astimezone().strftime("%b %d, %Y")
+                    dt_fmt = user_meta.get("user_preferences", {}).get("date_time_format", "YYYY-MM-DD HH:mm") if "user_meta" in locals() and user_meta else "YYYY-MM-DD HH:mm"
+                    logged = user_metadata_manager.format_user_datetime(item.get("created_at"), dt_fmt)
                 except (KeyError, ValueError):
                     logged = "Date unavailable"
                 title_col.caption(logged)
@@ -3387,7 +3532,9 @@ def show_dashboard_page() -> None:
                 with st.container(key=f"home_memory_{memory['experiment_id']}"):
                     title_col, open_col = st.columns([4, 1])
                     title_col.markdown(f"**{escape(memory.get('title') or 'Untitled experiment')}**")
-                    title_col.caption(f"Importance {memory['importance']:.0f}/5 · {memory['created_at'][:10]}")
+                    dt_fmt = user_meta.get("user_preferences", {}).get("date_time_format", "YYYY-MM-DD HH:mm") if "user_meta" in locals() and user_meta else "YYYY-MM-DD HH:mm"
+                    mem_date = user_metadata_manager.format_user_datetime(memory.get("created_at"), dt_fmt)
+                    title_col.caption(f"Importance {memory['importance']:.0f}/5 · {mem_date}")
                     title_col.write(memory["summary"])
                     if open_col.button("Open", icon=":material/arrow_outward:", key=f"memory_open_{memory['experiment_id']}"):
                         open_experiment(memory["experiment_id"])
@@ -3733,7 +3880,7 @@ def render_experiment_inspector(selected: dict, filtered: list[dict], reasons: d
                 title = item.get("title") or "Untitled experiment"
                 st.markdown(f"**{escape(title)}**")
                 try:
-                    when = datetime.fromisoformat(item["created_at"]).astimezone().strftime("%b %d, %Y")
+                    when = user_metadata_manager.format_user_datetime(item.get("created_at"), get_user_datetime_format())
                 except (KeyError, ValueError):
                     when = "Date unavailable"
                 st.caption(when)
@@ -3750,7 +3897,7 @@ def render_experiment_inspector(selected: dict, filtered: list[dict], reasons: d
     with inspector_column:
         with st.container(border=True):
             try:
-                display_date = datetime.fromisoformat(selected["created_at"]).astimezone().strftime("%b %d, %Y · %I:%M %p")
+                display_date = user_metadata_manager.format_user_datetime(selected.get("created_at"), get_user_datetime_format())
             except (KeyError, ValueError):
                 display_date = "Date unavailable"
             action_cols = st.columns([1, 1, 1])
@@ -3959,7 +4106,7 @@ def show_list_page() -> None:
             title_col, date_col = st.columns([5, 1])
             title_col.markdown(f'<p class="card-title">{escape(item.get("title", "Untitled"))}</p>', unsafe_allow_html=True)
             try:
-                date_text = datetime.fromisoformat(item["created_at"]).astimezone().strftime("%b %d, %Y")
+                date_text = user_metadata_manager.format_user_datetime(item.get("created_at"), get_user_datetime_format())
             except (KeyError, ValueError):
                 date_text = "Date unavailable"
             date_col.markdown(f'<p class="exp-date">{date_text}</p>', unsafe_allow_html=True)
@@ -4172,7 +4319,7 @@ def show_compare_page() -> None:
     selections = []
     for item in items:
         try:
-            date_text = datetime.fromisoformat(item["created_at"]).astimezone().strftime("%b %d, %Y")
+            date_text = user_metadata_manager.format_user_datetime(item.get("created_at"), get_user_datetime_format())
         except (KeyError, ValueError):
             date_text = "Date unavailable"
         label = f"{item.get('title') or 'Untitled experiment'}  ·  {date_text}"
@@ -4360,7 +4507,9 @@ with st.sidebar:
         ("Settings", "settings"),
     ]
     if "nav_page" not in st.session_state:
-        st.session_state.nav_page = "Home"
+        landing_pref = user_meta.get("user_preferences", {}).get("default_landing_page", "Home")
+        valid_page_labels = [label for label, _ in nav_items]
+        st.session_state.nav_page = landing_pref if landing_pref in valid_page_labels else "Home"
     for nav_label, nav_icon in nav_items:
         if st.button(nav_label, icon=f":material/{nav_icon}:", key=f"nav_{nav_label.lower().replace(' ', '_')}",
                      type="primary" if st.session_state.nav_page == nav_label else "secondary",
@@ -4415,7 +4564,8 @@ with st.sidebar:
         st.markdown('<span style="color:#81c8a9;display:inline-flex;align-items:center;gap:6px;font-size:12px;"><svg width="7" height="7" viewBox="0 0 24 24" fill="#81c8a9"><circle cx="12" cy="12" r="10"/></svg>API key ready</span>', unsafe_allow_html=True)
     else:
         st.markdown('<span style="color:#f18a5e;display:inline-flex;align-items:center;gap:6px;font-size:12px;"><svg width="7" height="7" viewBox="0 0 24 24" fill="#f18a5e"><circle cx="12" cy="12" r="10"/></svg>API key missing</span>', unsafe_allow_html=True)
-    st.caption("Personal workspace")
+    ws_label = user_meta.get("workspace_details", {}).get("workspace_name", "Personal workspace")
+    st.caption(ws_label)
 
 requested_experiment = st.query_params.get("open_experiment")
 if requested_experiment:

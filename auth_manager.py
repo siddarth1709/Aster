@@ -32,6 +32,11 @@ SESSION_EXPIRATION_DAYS = 30
 # ==============================================================================
 def init_auth_tables(connection: sqlite3.Connection) -> None:
     """Initialize user state model, OTP verification, and session tables."""
+    try:
+        connection.execute("PRAGMA foreign_keys=ON")
+    except Exception:
+        pass
+
     connection.execute("""CREATE TABLE IF NOT EXISTS users (
         id TEXT PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
@@ -56,6 +61,7 @@ def init_auth_tables(connection: sqlite3.Connection) -> None:
         attempts INTEGER NOT NULL DEFAULT 0,
         created_at TEXT NOT NULL
     )""")
+    connection.execute("CREATE INDEX IF NOT EXISTS idx_email_verif_user ON email_verifications(user_id)")
 
     connection.execute("""CREATE TABLE IF NOT EXISTS user_sessions (
         session_token TEXT PRIMARY KEY,
@@ -63,6 +69,8 @@ def init_auth_tables(connection: sqlite3.Connection) -> None:
         created_at TEXT NOT NULL,
         expires_at TEXT NOT NULL
     )""")
+    connection.execute("CREATE INDEX IF NOT EXISTS idx_user_sessions_user ON user_sessions(user_id)")
+    connection.execute("CREATE INDEX IF NOT EXISTS idx_user_sessions_token ON user_sessions(session_token)")
 
 
 # ==============================================================================
@@ -181,6 +189,7 @@ def register_user(
     try:
         import user_metadata_manager
         user_metadata_manager.get_user_metadata(connection, user_id)
+        user_metadata_manager.log_user_security_event(connection, user_id, "account_created", "New user account registered", "info")
     except Exception:
         pass
 
@@ -220,12 +229,21 @@ def login_user(
     if not verify_password(password, stored_hash):
         return None, "Invalid credentials. Please verify your email and password."
 
-    # Update metadata last_login_at
+    # Update metadata last_login_at and session activity
     try:
         import user_metadata_manager
         meta = user_metadata_manager.get_user_metadata(connection, row["id"])
-        meta["account_details"]["last_login_at"] = datetime.now(timezone.utc).isoformat()
-        user_metadata_manager.save_user_metadata(connection, row["id"], meta)
+        now_iso = datetime.now(timezone.utc).isoformat()
+        meta["account_details"]["last_login_at"] = now_iso
+        u_act = meta.get("usage_activity", {})
+        u_act["total_research_sessions"] = int(u_act.get("total_research_sessions", 0)) + 1
+        u_act["last_active_timestamp"] = now_iso
+        meta["usage_activity"] = u_act
+        sec_priv = meta.get("security_privacy", {})
+        sec_priv["last_security_event"] = "Authenticated session verified via credentials"
+        meta["security_privacy"] = sec_priv
+        user_metadata_manager.save_user_metadata(connection, row["id"], meta, is_admin=True)
+        user_metadata_manager.log_user_security_event(connection, row["id"], "login", "Successful session authentication", "info")
     except Exception:
         pass
 
@@ -319,6 +337,23 @@ def verify_email_otp(
         "UPDATE users SET is_verified=1 WHERE id=?", (user_id,)
     )
     connection.execute("DELETE FROM email_verifications WHERE id=?", (row["id"],))
+    try:
+        connection.commit()
+    except Exception:
+        pass
+
+    # Synchronize verification status to metadata
+    try:
+        import user_metadata_manager
+        meta = user_metadata_manager.get_user_metadata(connection, user_id)
+        meta["account_details"]["email_verified"] = True
+        sec_priv = meta.get("security_privacy", {})
+        sec_priv["last_security_event"] = "Email address verified via OTP code"
+        meta["security_privacy"] = sec_priv
+        user_metadata_manager.save_user_metadata(connection, user_id, meta, is_admin=True)
+        user_metadata_manager.log_user_security_event(connection, user_id, "email_verified", "Email address verified via OTP code", "info")
+    except Exception:
+        pass
 
     return True, "Email successfully verified!"
 
@@ -343,6 +378,26 @@ def persist_user_onboarding_interests(
            WHERE id=?""",
         (json_tags, user_id),
     )
+    try:
+        connection.commit()
+    except Exception:
+        pass
+
+    # Synchronize to user metadata ledger
+    try:
+        import user_metadata_manager
+        meta = user_metadata_manager.get_user_metadata(connection, user_id)
+        r_prof = meta.get("research_profile", {})
+        r_prof["research_interests"] = cleaned_tags
+        meta["research_profile"] = r_prof
+        u_act = meta.get("usage_activity", {})
+        u_act["onboarding_completion_status"] = True
+        u_act["last_onboarding_step"] = "Interest calibration completed"
+        meta["usage_activity"] = u_act
+        user_metadata_manager.save_user_metadata(connection, user_id, meta, is_admin=True)
+    except Exception:
+        pass
+
     return True, ""
 
 
@@ -506,7 +561,7 @@ def get_or_create_demo_user(
         meta["account_details"]["account_status"] = "Active (Demo Mode)"
         meta["account_details"]["account_role"] = "Principal AI Researcher"
         meta["account_details"]["last_login_at"] = now_iso
-        user_metadata_manager.save_user_metadata(connection, user_id, meta)
+        user_metadata_manager.save_user_metadata(connection, user_id, meta, is_admin=True)
     except Exception:
         pass
 
