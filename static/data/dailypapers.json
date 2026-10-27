@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Hugging Face Daily Papers",
-  "updated_at": "2026-10-26T18:41:32+00:00",
+  "updated_at": "2026-10-27T18:00:30+00:00",
   "summary_provider": "Raw abstract fallback",
   "papers": [
     {
@@ -42,97 +42,40 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
-      "id": "arxiv:2610.22471",
-      "arxiv_id": "2610.22471",
-      "title": "Has GPT-6-Astra Achieved Embodied Intelligence?",
+      "id": "arxiv:2610.28402",
+      "arxiv_id": "2610.28402",
+      "title": "StreamEval: Evaluating Interactive Streaming Video Generation Models",
       "authors": [
-        "SenseNova",
-        "Joint Research Team",
-        "Zhongang Cai",
-        "Ziang Cao",
-        "Tailai Chen",
-        "Han Chong Chua",
-        "Linjun Dai",
-        "Hanming Deng",
-        "Hokin Deng",
-        "Haiwen Diao",
-        "Chenjing Ding",
-        "Weichen Fan",
-        "Xiao Fu",
-        "Zerui Gong",
-        "Chenyang Gu",
-        "Zexin He",
-        "Zhi Hou",
-        "Bo Li",
-        "Qinyue Li",
-        "Quanzhou Li",
-        "Xiaowan Li",
-        "Zhichao Liao",
-        "Dahua Lin",
-        "Zilong Lin",
-        "Bo Liu",
-        "Chunxiao Liu",
-        "Pengfei Liu",
-        "Tianqi Liu",
-        "Ziwei Liu",
-        "Chen Change Loy",
-        "Lewei Lu",
-        "Jiapeng Luo",
-        "Yuexiao Ma",
-        "Liang Pan",
-        "Xingang Pan",
-        "Oscar Qian",
-        "Ziyi Shang",
-        "Yuyao Shao",
-        "Dawei Su",
-        "Dacheng Tao",
-        "Qingyi Tao",
-        "Quan Wang",
-        "Ruisi Wang",
-        "Xiaogang Wang",
-        "Ziyi Wang",
-        "Beichen Wen",
-        "Donghao Wu",
-        "Jiaxu Wu",
-        "Silei Wu",
-        "Xiaoming Wu",
-        "Zhonghua Wu",
-        "Hongcan Xiao",
-        "Weiye Xu",
-        "Atsushi Yamashita",
-        "Lei Yang",
-        "Zhe Yang",
-        "Baiqiao Yin",
-        "Wanqi Yin",
-        "Hanfei Zhao",
-        "Tianbo Zhong",
-        "Long Zhuo",
-        "Jing Zuo"
+        "StreamEval Team"
       ],
-      "abstract": "GPT-6-Astra demonstrates a level of competence in robotic manipulation and navigation that challenges the conventional paradigm of building specialized models for individual tasks and embodiments. In this report, we ask not only how capable GPT-6-Astra is, but what its capabilities imply for the field. First, we probe the limits of standalone GPT-6-Astra. We conduct a large-scale evaluation across 12 representative benchmarks spanning tabletop manipulation, humanoids, mobile platforms, and dexterous hands. Under a unified protocol that allows in-context learning (ICL) from training-set demonstrations and substantially increases the number of execution steps, GPT-6-Astra achieves unprecedented performance (Fig. 1). Future research may focus on improving 1) the generality of ICL 2) cost and execution time, 3) physical-state verification, 4) recovery from irreversible failures, and 5) long-horizon preservation of progress. Second, we study the agentic harness for embodied control. We identify that close-loop coordination between a high-level \"System 2\" reasoner (i.e., GPT-6-Astra) and a low-level \"System 1\" controller (e.g., π0.5) is costly but effective. Third, we examine GPT-6-Astra on real-world deployment. Our experiments on 8 robot configurations reveal substantial gaps: 1) robot demonstrations required for ICL are expensive to collect, and 2) it is implausible to trade longer execution for higher success rates with physical constraints. Fourth, we envision the next generation of embodied benchmarks. We develop a prototype that 1) derives tasks from real-world needs, 2) provides no in-domain demonstrations, and 3) judges agents on a world clock that keeps running while they deliberate. Taken together, our results suggest that GPT-6-Astra has largely crossed the threshold of embodied competence, but not yet that of practical embodied intelligence.",
+      "abstract": "As streaming video generation advances, enabling real-time interaction with generated video is becoming increasingly important. We introduce StreamEval, a unified benchmark for interactive streaming video generation spanning five tasks: avatar dialogue, avatar performance, world generation, instruction editing, and reference editing. StreamEval comprises 300 scripted test cases lasting 15-300s, each specifying initial assets, incrementally arriving multimodal requests, and explicit requirements for state changes and content preservation. Performance is assessed along four evaluation dimensions: task execution, state consistency, visual fidelity, and audiovisual coordination, instantiated through ten task-specific metrics on a 0-100 scale. Evaluating 37 distinct models across 300 test cases, we find that high visual quality and identity retention do not necessarily coincide with reliable request execution or sustained state consistency. In particular, request execution remains challenging: the highest task-specific scores are 36.90 for Following among seven avatar-performance models, 25.93 for Following in text-conditioned world generation, and 15.00 for Edit Success among three reported reference-editing models. These findings identify reliable request execution under timing and preservation constraints as a central challenge for advancing omni-modal real-time interactive systems. The leaderboard is available at https://streameval.ai",
       "category": "AI research",
       "keywords": [
-        "Evaluation"
+        "Evaluation",
+        "Vision & multimodal",
+        "Generative models"
       ],
-      "upvotes": 481,
-      "published_at": "2026-10-14T20:00:00.000Z",
-      "hf_url": "https://huggingface.co/papers/2610.22471",
-      "arxiv_url": "https://arxiv.org/abs/2610.22471",
-      "pdf_url": "https://arxiv.org/pdf/2610.22471",
-      "discussion_url": "https://huggingface.co/papers/2610.22471",
+      "upvotes": 656,
+      "published_at": "2026-10-19T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.28402",
+      "arxiv_url": "https://arxiv.org/abs/2610.28402",
+      "pdf_url": "https://arxiv.org/pdf/2610.28402",
+      "discussion_url": "https://huggingface.co/papers/2610.28402",
       "tldr_20_words": "",
-      "summary_25_words": "GPT-6-Astra demonstrates a level of competence in robotic manipulation and navigation that challenges the conventional paradigm of building specialized models for individual tasks and embodiments. In this report, we ask not only how capable GPT-6-Astra is, but what its capabilities imply for the field. First, we probe the limits of standalone GPT-6-Astra. We conduct a large-scale evaluation across 12 representative benchmarks spanning tabletop manipulation, humanoids, mobile platforms, and dexterous hands. Under a unified protocol that allows in-context learning (ICL) from training-set demonstrations and substantially increases the number of execution steps, GPT-6-Astra achieves unprecedented performance (Fig. 1). Future research may focus on improving 1) the generality of ICL 2) cost and execution time, 3) physical-state verification, 4) recovery from irreversible failures, and 5) long-horizon preservation of progress. Second, we study the agentic harness for embodied control. We identify that close-loop coordination between a high-level \"System 2\" reasoner (i.e., GPT-6-Astra) and a low-level \"System 1\" controller (e.g., π0.5) is costly but effective. Third, we examine GPT-6-Astra on real-world deployment. Our experiments on 8 robot configurations reveal substantial gaps: 1) robot demonstrations required for ICL are expensive to collect, and 2) it is implausible to trade longer execution for higher success rates with physical constraints. Fourth, we envision the next generation of embodied benchmarks. We develop a prototype that 1) derives tasks from real-world needs, 2) provides no in-domain demonstrations, and 3) judges agents on a world clock that keeps running while they deliberate. Taken together, our results suggest that GPT-6-Astra has largely crossed the threshold of embodied competence, but not yet that of practical embodied intelligence.",
+      "summary_25_words": "As streaming video generation advances, enabling real-time interaction with generated video is becoming increasingly important. We introduce StreamEval, a unified benchmark for interactive streaming video generation spanning five tasks: avatar dialogue, avatar performance, world generation, instruction editing, and reference editing. StreamEval comprises 300 scripted test cases lasting 15-300s, each specifying initial assets, incrementally arriving multimodal requests, and explicit requirements for state changes and content preservation. Performance is assessed along four evaluation dimensions: task execution, state consistency, visual fidelity, and audiovisual coordination, instantiated through ten task-specific metrics on a 0-100 scale. Evaluating 37 distinct models across 300 test cases, we find that high visual quality and identity retention do not necessarily coincide with reliable request execution or sustained state consistency. In particular, request execution remains challenging: the highest task-specific scores are 36.90 for Following among seven avatar-performance models, 25.93 for Following in text-conditioned world generation, and 15.00 for Edit Success among three reported reference-editing models. These findings identify reliable request execution under timing and preservation constraints as a central challenge for advancing omni-modal real-time interactive systems. The leaderboard is available at https://streameval.ai",
       "breakthrough": "",
       "example_architecture": "Not specified in the abstract.",
       "training_strategy": "Not specified in the abstract.",
       "dataset_curation": "Not specified in the abstract.",
       "tags": [
-        "Evaluation"
+        "Evaluation",
+        "Vision & multimodal",
+        "Generative models"
       ],
       "reasoning": "Not specified in the abstract.",
       "state_space_fusion": "Not specified in the abstract.",
@@ -199,8 +142,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
@@ -222,7 +165,7 @@
       "keywords": [
         "Vision & multimodal"
       ],
-      "upvotes": 248,
+      "upvotes": 256,
       "published_at": "2026-10-21T20:00:00.000Z",
       "hf_url": "https://huggingface.co/papers/2610.31329",
       "arxiv_url": "https://arxiv.org/abs/2610.31329",
@@ -248,8 +191,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 8,
+        "per_day": 8.2
       }
     },
     {
@@ -300,7 +243,7 @@
         "Generative models",
         "Reasoning"
       ],
-      "upvotes": 206,
+      "upvotes": 207,
       "published_at": "2026-09-26T20:00:00.000Z",
       "hf_url": "https://huggingface.co/papers/2609.33757",
       "arxiv_url": "https://arxiv.org/abs/2609.33757",
@@ -315,6 +258,174 @@
       "tags": [
         "Evaluation",
         "Generative models",
+        "Reasoning"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
+      "three_pillars": {
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
+      },
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": 1,
+        "per_day": 1.0
+      }
+    },
+    {
+      "id": "arxiv:2610.26825",
+      "arxiv_id": "2610.26825",
+      "title": "MemT-1.0: Towards Memory-Native Evolution",
+      "authors": [
+        "Zhiyu Li",
+        "Zeyu Zhang",
+        "Linyun Liu",
+        "Yiwei Bu",
+        "Chenyang Xi",
+        "Xichong Zhang",
+        "Yi Yu",
+        "Yu Yu",
+        "Zhichen Liu",
+        "Yuxiao Yi",
+        "Chunyu Li",
+        "Haoran Liu",
+        "Zhenkai Ding",
+        "Le Zhou",
+        "Juncheng Zhang",
+        "Boyu Chen",
+        "Zehao Lin",
+        "Guorui Li",
+        "Renyu Fu",
+        "Ji Li",
+        "Youyang Xia",
+        "Jiajun Shen",
+        "Harvey Li",
+        "Jingsong Zhou",
+        "Helan Hu",
+        "Tong Shen",
+        "Tianxiao Xu",
+        "Chenye Han",
+        "Weijie Li",
+        "Zhongquan Zhou",
+        "Hongming Xu",
+        "Yuekeng Li",
+        "Erenkai Zhu",
+        "Peng Yu",
+        "Wenhao Li",
+        "Jingyi Kang",
+        "Xixuan Hao",
+        "Xuzhou Zhu",
+        "Can Chen",
+        "Jiawei Liu",
+        "Chen Jiang",
+        "Tao Jiang",
+        "Fangwei Xiang",
+        "Zepeng Yao",
+        "Kai Chen",
+        "Guang Yang",
+        "Mingfei Lu",
+        "Chunhui Li",
+        "Zhengxuan Jiang",
+        "Bo Tang",
+        "Shiyu Zhan",
+        "Yihang Sun",
+        "Jie Chu",
+        "Wenjun Xiong",
+        "Zhenxiang Hua",
+        "Chen Lin",
+        "Detong Su",
+        "Dongyu Deng",
+        "Qiuping Ding",
+        "Guofeng Ding",
+        "Si Chen",
+        "Guohua Wen",
+        "Xu Chen",
+        "Zhi-Qin John Xu",
+        "Ying-Cong Chen",
+        "Ningyu Zhang",
+        "Haofen Wang",
+        "Muning Wen",
+        "Haotian Chen",
+        "Wentao Zhang",
+        "Xuanhe Zhou",
+        "Rita Zhang",
+        "Junchi Yan",
+        "Feiyu Xiong"
+      ],
+      "abstract": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
+      "category": "AI research",
+      "keywords": [
+        "Memory & long context",
+        "Retrieval & RAG",
+        "Evaluation"
+      ],
+      "upvotes": 183,
+      "published_at": "2026-10-18T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.26825",
+      "arxiv_url": "https://arxiv.org/abs/2610.26825",
+      "pdf_url": "https://arxiv.org/pdf/2610.26825",
+      "discussion_url": "https://huggingface.co/papers/2610.26825",
+      "tldr_20_words": "",
+      "summary_25_words": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Memory & long context",
+        "Retrieval & RAG",
+        "Evaluation"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
+      "three_pillars": {
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
+      },
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": 3,
+        "per_day": 3.1
+      }
+    },
+    {
+      "id": "arxiv:2610.34467",
+      "arxiv_id": "2610.34467",
+      "title": "DynaFlow: Learning Free-Form Multi-Agent Orchestration",
+      "authors": [
+        "Ruhao Liu",
+        "Qi Li",
+        "Shizun Wang",
+        "Xinchao Wang"
+      ],
+      "abstract": "Multi-agent systems often rely on predefined collaboration structures, limiting their ability to adapt to diverse task requirements. We introduce DynaFlow, a framework that integrates free-form executable workflow synthesis into the action space of the main agent. The agent decides when collaboration is needed and generates task-specific programs that coordinate sub-agents through sequential or parallel execution, structured information exchange, and verification. Execution results and traces inform subsequent actions, enabling the agent to adapt collaboration as reasoning progresses. We train only the main agent through supervised fine-tuning on distilled trajectories, followed by refinement on examples filtered for unsupported premises, biased verification, and information-flow defects. All sub-agents remain fixed, separating orchestration learning from executor capability improvement. Across six benchmarks spanning mathematical reasoning, scientific question answering, and multi-hop retrieval, DynaFlow achieves 88.08% overall accuracy in Forced mode, outperforming the strongest evaluated baseline by 10.90 percentage points with the same Qwen3.5-27B backbone. Workflow analysis finds more explicit use, verification, and refinement of upstream outputs after training, highlighting cross-stage information flow as a key dimension of multi-agent orchestration.",
+      "category": "AI research",
+      "keywords": [
+        "Agents & tools",
+        "Retrieval & RAG",
+        "Reasoning"
+      ],
+      "upvotes": 182,
+      "published_at": "2026-10-24T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.34467",
+      "arxiv_url": "https://arxiv.org/abs/2610.34467",
+      "pdf_url": "https://arxiv.org/pdf/2610.34467",
+      "discussion_url": "https://huggingface.co/papers/2610.34467",
+      "tldr_20_words": "",
+      "summary_25_words": "Multi-agent systems often rely on predefined collaboration structures, limiting their ability to adapt to diverse task requirements. We introduce DynaFlow, a framework that integrates free-form executable workflow synthesis into the action space of the main agent. The agent decides when collaboration is needed and generates task-specific programs that coordinate sub-agents through sequential or parallel execution, structured information exchange, and verification. Execution results and traces inform subsequent actions, enabling the agent to adapt collaboration as reasoning progresses. We train only the main agent through supervised fine-tuning on distilled trajectories, followed by refinement on examples filtered for unsupported premises, biased verification, and information-flow defects. All sub-agents remain fixed, separating orchestration learning from executor capability improvement. Across six benchmarks spanning mathematical reasoning, scientific question answering, and multi-hop retrieval, DynaFlow achieves 88.08% overall accuracy in Forced mode, outperforming the strongest evaluated baseline by 10.90 percentage points with the same Qwen3.5-27B backbone. Workflow analysis finds more explicit use, verification, and refinement of upstream outputs after training, highlighting cross-stage information flow as a key dimension of multi-agent orchestration.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Agents & tools",
+        "Retrieval & RAG",
         "Reasoning"
       ],
       "reasoning": "Not specified in the abstract.",
@@ -430,181 +541,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
-      }
-    },
-    {
-      "id": "arxiv:2610.26825",
-      "arxiv_id": "2610.26825",
-      "title": "MemT-1.0: Towards Memory-Native Evolution",
-      "authors": [
-        "Zhiyu Li",
-        "Zeyu Zhang",
-        "Linyun Liu",
-        "Yiwei Bu",
-        "Chenyang Xi",
-        "Xichong Zhang",
-        "Yi Yu",
-        "Yu Yu",
-        "Zhichen Liu",
-        "Yuxiao Yi",
-        "Chunyu Li",
-        "Haoran Liu",
-        "Zhenkai Ding",
-        "Le Zhou",
-        "Juncheng Zhang",
-        "Boyu Chen",
-        "Zehao Lin",
-        "Guorui Li",
-        "Renyu Fu",
-        "Ji Li",
-        "Youyang Xia",
-        "Jiajun Shen",
-        "Harvey Li",
-        "Jingsong Zhou",
-        "Helan Hu",
-        "Tong Shen",
-        "Tianxiao Xu",
-        "Chenye Han",
-        "Weijie Li",
-        "Zhongquan Zhou",
-        "Hongming Xu",
-        "Yuekeng Li",
-        "Erenkai Zhu",
-        "Peng Yu",
-        "Wenhao Li",
-        "Jingyi Kang",
-        "Xixuan Hao",
-        "Xuzhou Zhu",
-        "Can Chen",
-        "Jiawei Liu",
-        "Chen Jiang",
-        "Tao Jiang",
-        "Fangwei Xiang",
-        "Zepeng Yao",
-        "Kai Chen",
-        "Guang Yang",
-        "Mingfei Lu",
-        "Chunhui Li",
-        "Zhengxuan Jiang",
-        "Bo Tang",
-        "Shiyu Zhan",
-        "Yihang Sun",
-        "Jie Chu",
-        "Wenjun Xiong",
-        "Zhenxiang Hua",
-        "Chen Lin",
-        "Detong Su",
-        "Dongyu Deng",
-        "Qiuping Ding",
-        "Guofeng Ding",
-        "Si Chen",
-        "Guohua Wen",
-        "Xu Chen",
-        "Zhi-Qin John Xu",
-        "Ying-Cong Chen",
-        "Ningyu Zhang",
-        "Haofen Wang",
-        "Muning Wen",
-        "Haotian Chen",
-        "Wentao Zhang",
-        "Xuanhe Zhou",
-        "Rita Zhang",
-        "Junchi Yan",
-        "Feiyu Xiong"
-      ],
-      "abstract": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
-      "category": "AI research",
-      "keywords": [
-        "Memory & long context",
-        "Retrieval & RAG",
-        "Evaluation"
-      ],
-      "upvotes": 180,
-      "published_at": "2026-10-18T20:00:00.000Z",
-      "hf_url": "https://huggingface.co/papers/2610.26825",
-      "arxiv_url": "https://arxiv.org/abs/2610.26825",
-      "pdf_url": "https://arxiv.org/pdf/2610.26825",
-      "discussion_url": "https://huggingface.co/papers/2610.26825",
-      "tldr_20_words": "",
-      "summary_25_words": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately 1.86times end-to-end inference speedup and a 66times reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
-      "breakthrough": "",
-      "example_architecture": "Not specified in the abstract.",
-      "training_strategy": "Not specified in the abstract.",
-      "dataset_curation": "Not specified in the abstract.",
-      "tags": [
-        "Memory & long context",
-        "Retrieval & RAG",
-        "Evaluation"
-      ],
-      "reasoning": "Not specified in the abstract.",
-      "state_space_fusion": "Not specified in the abstract.",
-      "key_mechanism": "Not specified in the abstract.",
-      "evaluation": "Not specified in the abstract.",
-      "three_pillars": {
-        "core_breakthrough": "Not specified in the abstract.",
-        "methodological_novelty": "Not specified in the abstract.",
-        "empirical_validation": "Not specified in the abstract."
-      },
-      "summary_source": "abstract",
-      "upvote_velocity": {
-        "change": null,
-        "per_day": null
-      }
-    },
-    {
-      "id": "arxiv:2503.11576",
-      "arxiv_id": "2503.11576",
-      "title": "SmolDocling: An ultra-compact vision-language model for end-to-end\n  multi-modal document conversion",
-      "authors": [
-        "Ahmed Nassar",
-        "Andres Marafioti",
-        "Matteo Omenetti",
-        "Maksym Lysak",
-        "Nikolaos Livathinos",
-        "Christoph Auer",
-        "Lucas Morin",
-        "Rafael Teixeira de Lima",
-        "Yusik Kim",
-        "A. Said Gurbuz",
-        "Michele Dolfi",
-        "Miquel Farré",
-        "Peter W. J. Staar"
-      ],
-      "abstract": "We introduce SmolDocling, an ultra-compact vision-language model targeting\nend-to-end document conversion. Our model comprehensively processes entire\npages by generating DocTags, a new universal markup format that captures all\npage elements in their full context with location. Unlike existing approaches\nthat rely on large foundational models, or ensemble solutions that rely on\nhandcrafted pipelines of multiple specialized models, SmolDocling offers an\nend-to-end conversion for accurately capturing content, structure and spatial\nlocation of document elements in a 256M parameters vision-language model.\nSmolDocling exhibits robust performance in correctly reproducing document\nfeatures such as code listings, tables, equations, charts, lists, and more\nacross a diverse range of document types including business documents, academic\npapers, technical reports, patents, and forms -- significantly extending beyond\nthe commonly observed focus on scientific papers. Additionally, we contribute\nnovel publicly sourced datasets for charts, tables, equations, and code\nrecognition. Experimental results demonstrate that SmolDocling competes with\nother Vision Language Models that are up to 27 times larger in size, while\nreducing computational requirements substantially. The model is currently\navailable, datasets will be publicly available soon.",
-      "category": "AI research",
-      "keywords": [
-        "Vision & multimodal"
-      ],
-      "upvotes": 180,
-      "published_at": "2025-03-14T12:44:14.000Z",
-      "hf_url": "https://huggingface.co/papers/2503.11576",
-      "arxiv_url": "https://arxiv.org/abs/2503.11576",
-      "pdf_url": "https://arxiv.org/pdf/2503.11576",
-      "discussion_url": "https://huggingface.co/papers/2503.11576",
-      "tldr_20_words": "",
-      "summary_25_words": "We introduce SmolDocling, an ultra-compact vision-language model targeting\nend-to-end document conversion. Our model comprehensively processes entire\npages by generating DocTags, a new universal markup format that captures all\npage elements in their full context with location. Unlike existing approaches\nthat rely on large foundational models, or ensemble solutions that rely on\nhandcrafted pipelines of multiple specialized models, SmolDocling offers an\nend-to-end conversion for accurately capturing content, structure and spatial\nlocation of document elements in a 256M parameters vision-language model.\nSmolDocling exhibits robust performance in correctly reproducing document\nfeatures such as code listings, tables, equations, charts, lists, and more\nacross a diverse range of document types including business documents, academic\npapers, technical reports, patents, and forms -- significantly extending beyond\nthe commonly observed focus on scientific papers. Additionally, we contribute\nnovel publicly sourced datasets for charts, tables, equations, and code\nrecognition. Experimental results demonstrate that SmolDocling competes with\nother Vision Language Models that are up to 27 times larger in size, while\nreducing computational requirements substantially. The model is currently\navailable, datasets will be publicly available soon.",
-      "breakthrough": "",
-      "example_architecture": "Not specified in the abstract.",
-      "training_strategy": "Not specified in the abstract.",
-      "dataset_curation": "Not specified in the abstract.",
-      "tags": [
-        "Vision & multimodal"
-      ],
-      "reasoning": "Not specified in the abstract.",
-      "state_space_fusion": "Not specified in the abstract.",
-      "key_mechanism": "Not specified in the abstract.",
-      "evaluation": "Not specified in the abstract.",
-      "three_pillars": {
-        "core_breakthrough": "Not specified in the abstract.",
-        "methodological_novelty": "Not specified in the abstract.",
-        "empirical_validation": "Not specified in the abstract."
-      },
-      "summary_source": "abstract",
-      "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     }
   ],
@@ -618,31 +556,31 @@
       "count": 3
     },
     {
+      "tag": "Agents & tools",
+      "count": 2
+    },
+    {
+      "tag": "Generative models",
+      "count": 2
+    },
+    {
       "tag": "Memory & long context",
       "count": 2
     },
     {
-      "tag": "Agents & tools",
-      "count": 1
-    },
-    {
-      "tag": "Generative models",
-      "count": 1
-    },
-    {
       "tag": "Reasoning",
-      "count": 1
+      "count": 2
     },
     {
       "tag": "Retrieval & RAG",
-      "count": 1
+      "count": 2
     }
   ],
   "observations": [
     {
       "arxiv_id": "2609.33439",
       "upvotes": 711,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2610.22471",
@@ -652,32 +590,42 @@
     {
       "arxiv_id": "2609.33325",
       "upvotes": 344,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2610.31329",
-      "upvotes": 248,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "upvotes": 256,
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2609.33757",
-      "upvotes": 206,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "upvotes": 207,
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2509.22186",
       "upvotes": 181,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2610.26825",
-      "upvotes": 180,
-      "observed_at": "2026-10-26T18:41:32+00:00"
+      "upvotes": 183,
+      "observed_at": "2026-10-27T18:00:30+00:00"
     },
     {
       "arxiv_id": "2503.11576",
       "upvotes": 180,
       "observed_at": "2026-10-26T18:41:32+00:00"
+    },
+    {
+      "arxiv_id": "2610.28402",
+      "upvotes": 656,
+      "observed_at": "2026-10-27T18:00:30+00:00"
+    },
+    {
+      "arxiv_id": "2610.34467",
+      "upvotes": 182,
+      "observed_at": "2026-10-27T18:00:30+00:00"
     }
   ]
 }
