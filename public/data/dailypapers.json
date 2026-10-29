@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Hugging Face Daily Papers",
-  "updated_at": "2026-10-28T18:21:23+00:00",
+  "updated_at": "2026-10-29T18:28:40+00:00",
   "summary_provider": "Raw abstract fallback",
   "papers": [
     {
@@ -18,7 +18,7 @@
         "Vision & multimodal",
         "Generative models"
       ],
-      "upvotes": 864,
+      "upvotes": 658,
       "published_at": "2026-10-19T20:00:00.000Z",
       "hf_url": "https://huggingface.co/papers/2610.28402",
       "arxiv_url": "https://arxiv.org/abs/2610.28402",
@@ -46,50 +46,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
-      }
-    },
-    {
-      "id": "arxiv:2609.33439",
-      "arxiv_id": "2609.33439",
-      "title": "Raven: The Harness of Harnesses for Composable Agentic Intelligence",
-      "authors": [
-        "EverMind AI"
-      ],
-      "abstract": "As large language models advance, AI agents are moving beyond isolated, domain-specific tasks toward long-horizon, cross-domain workflows. This transition exposes two challenges: increasing harness complexity makes manual design difficult to scale, while tighter coupling to specific domains limits the generality of a single harness. The central question thus shifts from how to engineer a stronger harness for one domain to how to autonomously construct specialized harnesses, improve them through experience, and orchestrate them across domains. We introduce Raven, The Harness of Harnesses, an open-source multi-agent ecosystem that automatically constructs and evolves modular harnesses for specific models and domains, treating each executable model--harness pair as a composable unit of intelligence. To support an All-Domain Collaboration Network, its Host Agent decomposes goals, matches subtasks to specialized agents, coordinates execution dependencies, and integrates results, while a host archive and EverOS preserve experience across tasks and Skill Forge makes that experience available as reusable procedures. Our theory establishes sufficient conditions for such composition to expand reliable task coverage beyond that of the available individual agents under a shared resource budget. On complex and long-horizon tasks, Raven significantly outperforms the state-of-the-art agent systems, pushing the frontier of composable agentic intelligence.",
-      "category": "AI research",
-      "keywords": [
-        "Agents & tools"
-      ],
-      "upvotes": 712,
-      "published_at": "2026-09-26T20:00:00.000Z",
-      "hf_url": "https://huggingface.co/papers/2609.33439",
-      "arxiv_url": "https://arxiv.org/abs/2609.33439",
-      "pdf_url": "https://arxiv.org/pdf/2609.33439",
-      "discussion_url": "https://huggingface.co/papers/2609.33439",
-      "tldr_20_words": "",
-      "summary_25_words": "As large language models advance, AI agents are moving beyond isolated, domain-specific tasks toward long-horizon, cross-domain workflows. This transition exposes two challenges: increasing harness complexity makes manual design difficult to scale, while tighter coupling to specific domains limits the generality of a single harness. The central question thus shifts from how to engineer a stronger harness for one domain to how to autonomously construct specialized harnesses, improve them through experience, and orchestrate them across domains. We introduce Raven, The Harness of Harnesses, an open-source multi-agent ecosystem that automatically constructs and evolves modular harnesses for specific models and domains, treating each executable model--harness pair as a composable unit of intelligence. To support an All-Domain Collaboration Network, its Host Agent decomposes goals, matches subtasks to specialized agents, coordinates execution dependencies, and integrates results, while a host archive and EverOS preserve experience across tasks and Skill Forge makes that experience available as reusable procedures. Our theory establishes sufficient conditions for such composition to expand reliable task coverage beyond that of the available individual agents under a shared resource budget. On complex and long-horizon tasks, Raven significantly outperforms the state-of-the-art agent systems, pushing the frontier of composable agentic intelligence.",
-      "breakthrough": "",
-      "example_architecture": "Not specified in the abstract.",
-      "training_strategy": "Not specified in the abstract.",
-      "dataset_curation": "Not specified in the abstract.",
-      "tags": [
-        "Agents & tools"
-      ],
-      "reasoning": "Not specified in the abstract.",
-      "state_space_fusion": "Not specified in the abstract.",
-      "key_mechanism": "Not specified in the abstract.",
-      "evaluation": "Not specified in the abstract.",
-      "three_pillars": {
-        "core_breakthrough": "Not specified in the abstract.",
-        "methodological_novelty": "Not specified in the abstract.",
-        "empirical_validation": "Not specified in the abstract."
-      },
-      "summary_source": "abstract",
-      "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": -206,
+        "per_day": -205.0
       }
     },
     {
@@ -137,8 +95,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
@@ -217,57 +175,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
-      }
-    },
-    {
-      "id": "arxiv:2610.34467",
-      "arxiv_id": "2610.34467",
-      "title": "DynaFlow: Learning Free-Form Multi-Agent Orchestration",
-      "authors": [
-        "Ruhao Liu",
-        "Qi Li",
-        "Shizun Wang",
-        "Xinchao Wang"
-      ],
-      "abstract": "Multi-agent systems often rely on predefined collaboration structures, limiting their ability to adapt to diverse task requirements. We introduce DynaFlow, a framework that integrates free-form executable workflow synthesis into the action space of the main agent. The agent decides when collaboration is needed and generates task-specific programs that coordinate sub-agents through sequential or parallel execution, structured information exchange, and verification. Execution results and traces inform subsequent actions, enabling the agent to adapt collaboration as reasoning progresses. We train only the main agent through supervised fine-tuning on distilled trajectories, followed by refinement on examples filtered for unsupported premises, biased verification, and information-flow defects. All sub-agents remain fixed, separating orchestration learning from executor capability improvement. Across six benchmarks spanning mathematical reasoning, scientific question answering, and multi-hop retrieval, DynaFlow achieves 88.08% overall accuracy in Forced mode, outperforming the strongest evaluated baseline by 10.90 percentage points with the same Qwen3.5-27B backbone. Workflow analysis finds more explicit use, verification, and refinement of upstream outputs after training, highlighting cross-stage information flow as a key dimension of multi-agent orchestration.",
-      "category": "AI research",
-      "keywords": [
-        "Agents & tools",
-        "Retrieval & RAG",
-        "Reasoning"
-      ],
-      "upvotes": 202,
-      "published_at": "2026-10-24T20:00:00.000Z",
-      "hf_url": "https://huggingface.co/papers/2610.34467",
-      "arxiv_url": "https://arxiv.org/abs/2610.34467",
-      "pdf_url": "https://arxiv.org/pdf/2610.34467",
-      "discussion_url": "https://huggingface.co/papers/2610.34467",
-      "tldr_20_words": "",
-      "summary_25_words": "Multi-agent systems often rely on predefined collaboration structures, limiting their ability to adapt to diverse task requirements. We introduce DynaFlow, a framework that integrates free-form executable workflow synthesis into the action space of the main agent. The agent decides when collaboration is needed and generates task-specific programs that coordinate sub-agents through sequential or parallel execution, structured information exchange, and verification. Execution results and traces inform subsequent actions, enabling the agent to adapt collaboration as reasoning progresses. We train only the main agent through supervised fine-tuning on distilled trajectories, followed by refinement on examples filtered for unsupported premises, biased verification, and information-flow defects. All sub-agents remain fixed, separating orchestration learning from executor capability improvement. Across six benchmarks spanning mathematical reasoning, scientific question answering, and multi-hop retrieval, DynaFlow achieves 88.08% overall accuracy in Forced mode, outperforming the strongest evaluated baseline by 10.90 percentage points with the same Qwen3.5-27B backbone. Workflow analysis finds more explicit use, verification, and refinement of upstream outputs after training, highlighting cross-stage information flow as a key dimension of multi-agent orchestration.",
-      "breakthrough": "",
-      "example_architecture": "Not specified in the abstract.",
-      "training_strategy": "Not specified in the abstract.",
-      "dataset_curation": "Not specified in the abstract.",
-      "tags": [
-        "Agents & tools",
-        "Retrieval & RAG",
-        "Reasoning"
-      ],
-      "reasoning": "Not specified in the abstract.",
-      "state_space_fusion": "Not specified in the abstract.",
-      "key_mechanism": "Not specified in the abstract.",
-      "evaluation": "Not specified in the abstract.",
-      "three_pillars": {
-        "core_breakthrough": "Not specified in the abstract.",
-        "methodological_novelty": "Not specified in the abstract.",
-        "empirical_validation": "Not specified in the abstract."
-      },
-      "summary_source": "abstract",
-      "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
@@ -385,8 +294,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
@@ -487,8 +396,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     },
     {
@@ -541,6 +450,106 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
+        "change": 0,
+        "per_day": 0.0
+      }
+    },
+    {
+      "id": "arxiv:2506.01844",
+      "arxiv_id": "2506.01844",
+      "title": "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient\n  Robotics",
+      "authors": [
+        "Mustafa Shukor",
+        "Dana Aubakirova",
+        "Francesco Capuano",
+        "Pepijn Kooijmans",
+        "Steven Palma",
+        "Adil Zouitine",
+        "Michel Aractingi",
+        "Caroline Pascal",
+        "Martino Russi",
+        "Andres Marafioti",
+        "Simon Alibert",
+        "Matthieu Cord",
+        "Thomas Wolf",
+        "Remi Cadene"
+      ],
+      "abstract": "Vision-language models (VLMs) pretrained on large-scale multimodal datasets\nencode rich visual and linguistic knowledge, making them a strong foundation\nfor robotics. Rather than training robotic policies from scratch, recent\napproaches adapt VLMs into vision-language-action (VLA) models that enable\nnatural language-driven perception and control. However, existing VLAs are\ntypically massive--often with billions of parameters--leading to high training\ncosts and limited real-world deployability. Moreover, they rely on academic and\nindustrial datasets, overlooking the growing availability of\ncommunity-collected data from affordable robotic platforms. In this work, we\npresent SmolVLA, a small, efficient, and community-driven VLA that drastically\nreduces both training and inference costs, while retaining competitive\nperformance. SmolVLA is designed to be trained on a single GPU and deployed on\nconsumer-grade GPUs or even CPUs. To further improve responsiveness, we\nintroduce an asynchronous inference stack decoupling perception and action\nprediction from action execution, allowing higher control rates with chunked\naction generation. Despite its compact size, SmolVLA achieves performance\ncomparable to VLAs that are 10x larger. We evaluate SmolVLA on a range of both\nsimulated as well as real-world robotic benchmarks and release all code,\npretrained models, and training data.",
+      "category": "AI research",
+      "keywords": [
+        "Vision & multimodal"
+      ],
+      "upvotes": 169,
+      "published_at": "2025-06-02T12:30:19.000Z",
+      "hf_url": "https://huggingface.co/papers/2506.01844",
+      "arxiv_url": "https://arxiv.org/abs/2506.01844",
+      "pdf_url": "https://arxiv.org/pdf/2506.01844",
+      "discussion_url": "https://huggingface.co/papers/2506.01844",
+      "tldr_20_words": "",
+      "summary_25_words": "Vision-language models (VLMs) pretrained on large-scale multimodal datasets\nencode rich visual and linguistic knowledge, making them a strong foundation\nfor robotics. Rather than training robotic policies from scratch, recent\napproaches adapt VLMs into vision-language-action (VLA) models that enable\nnatural language-driven perception and control. However, existing VLAs are\ntypically massive--often with billions of parameters--leading to high training\ncosts and limited real-world deployability. Moreover, they rely on academic and\nindustrial datasets, overlooking the growing availability of\ncommunity-collected data from affordable robotic platforms. In this work, we\npresent SmolVLA, a small, efficient, and community-driven VLA that drastically\nreduces both training and inference costs, while retaining competitive\nperformance. SmolVLA is designed to be trained on a single GPU and deployed on\nconsumer-grade GPUs or even CPUs. To further improve responsiveness, we\nintroduce an asynchronous inference stack decoupling perception and action\nprediction from action execution, allowing higher control rates with chunked\naction generation. Despite its compact size, SmolVLA achieves performance\ncomparable to VLAs that are 10x larger. We evaluate SmolVLA on a range of both\nsimulated as well as real-world robotic benchmarks and release all code,\npretrained models, and training data.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Vision & multimodal"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
+      "three_pillars": {
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
+      },
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
+      }
+    },
+    {
+      "id": "arxiv:2412.20138",
+      "arxiv_id": "2412.20138",
+      "title": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "authors": [
+        "Yijia Xiao",
+        "Edward Sun",
+        "Di Luo",
+        "Wei Wang"
+      ],
+      "abstract": "Significant progress has been made in automated problem-solving using\nsocieties of agents powered by large language models (LLMs). In finance,\nefforts have largely focused on single-agent systems handling specific tasks or\nmulti-agent frameworks independently gathering data. However, the multi-agent\nsystems' potential to replicate real-world trading firms' collaborative\ndynamics remains underexplored. TradingAgents proposes a novel stock trading\nframework inspired by trading firms, featuring LLM-powered agents in\nspecialized roles such as fundamental analysts, sentiment analysts, technical\nanalysts, and traders with varied risk profiles. The framework includes Bull\nand Bear researcher agents assessing market conditions, a risk management team\nmonitoring exposure, and traders synthesizing insights from debates and\nhistorical data to make informed decisions. By simulating a dynamic,\ncollaborative trading environment, this framework aims to improve trading\nperformance. Detailed architecture and extensive experiments reveal its\nsuperiority over baseline models, with notable improvements in cumulative\nreturns, Sharpe ratio, and maximum drawdown, highlighting the potential of\nmulti-agent LLM frameworks in financial trading. TradingAgents is available at\nhttps://github.com/TauricResearch/TradingAgents.",
+      "category": "AI research",
+      "keywords": [
+        "Agents & tools"
+      ],
+      "upvotes": 158,
+      "published_at": "2024-12-28T07:54:06.000Z",
+      "hf_url": "https://huggingface.co/papers/2412.20138",
+      "arxiv_url": "https://arxiv.org/abs/2412.20138",
+      "pdf_url": "https://arxiv.org/pdf/2412.20138",
+      "discussion_url": "https://huggingface.co/papers/2412.20138",
+      "tldr_20_words": "",
+      "summary_25_words": "Significant progress has been made in automated problem-solving using\nsocieties of agents powered by large language models (LLMs). In finance,\nefforts have largely focused on single-agent systems handling specific tasks or\nmulti-agent frameworks independently gathering data. However, the multi-agent\nsystems' potential to replicate real-world trading firms' collaborative\ndynamics remains underexplored. TradingAgents proposes a novel stock trading\nframework inspired by trading firms, featuring LLM-powered agents in\nspecialized roles such as fundamental analysts, sentiment analysts, technical\nanalysts, and traders with varied risk profiles. The framework includes Bull\nand Bear researcher agents assessing market conditions, a risk management team\nmonitoring exposure, and traders synthesizing insights from debates and\nhistorical data to make informed decisions. By simulating a dynamic,\ncollaborative trading environment, this framework aims to improve trading\nperformance. Detailed architecture and extensive experiments reveal its\nsuperiority over baseline models, with notable improvements in cumulative\nreturns, Sharpe ratio, and maximum drawdown, highlighting the potential of\nmulti-agent LLM frameworks in financial trading. TradingAgents is available at\nhttps://github.com/TauricResearch/TradingAgents.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Agents & tools"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
+      "three_pillars": {
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
+      },
+      "summary_source": "abstract",
+      "upvote_velocity": {
         "change": null,
         "per_day": null
       }
@@ -549,38 +558,38 @@
   "trending_topics": [
     {
       "tag": "Vision & multimodal",
-      "count": 4
+      "count": 5
     },
     {
       "tag": "Evaluation",
       "count": 3
     },
     {
-      "tag": "Agents & tools",
-      "count": 2
-    },
-    {
       "tag": "Generative models",
       "count": 2
     },
     {
-      "tag": "Reasoning",
-      "count": 2
-    },
-    {
-      "tag": "Retrieval & RAG",
-      "count": 2
+      "tag": "Agents & tools",
+      "count": 1
     },
     {
       "tag": "Memory & long context",
+      "count": 1
+    },
+    {
+      "tag": "Reasoning",
+      "count": 1
+    },
+    {
+      "tag": "Retrieval & RAG",
       "count": 1
     }
   ],
   "observations": [
     {
       "arxiv_id": "2610.28402",
-      "upvotes": 864,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "upvotes": 658,
+      "observed_at": "2026-10-29T18:28:40+00:00"
     },
     {
       "arxiv_id": "2609.33439",
@@ -590,12 +599,12 @@
     {
       "arxiv_id": "2610.31329",
       "upvotes": 258,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "observed_at": "2026-10-29T18:28:40+00:00"
     },
     {
       "arxiv_id": "2609.33757",
       "upvotes": 207,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "observed_at": "2026-10-29T18:28:40+00:00"
     },
     {
       "arxiv_id": "2610.34467",
@@ -605,17 +614,27 @@
     {
       "arxiv_id": "2610.26825",
       "upvotes": 183,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "observed_at": "2026-10-29T18:28:40+00:00"
     },
     {
       "arxiv_id": "2509.22186",
       "upvotes": 181,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "observed_at": "2026-10-29T18:28:40+00:00"
     },
     {
       "arxiv_id": "2503.11576",
       "upvotes": 180,
-      "observed_at": "2026-10-28T18:21:23+00:00"
+      "observed_at": "2026-10-29T18:28:40+00:00"
+    },
+    {
+      "arxiv_id": "2506.01844",
+      "upvotes": 169,
+      "observed_at": "2026-10-29T18:28:40+00:00"
+    },
+    {
+      "arxiv_id": "2412.20138",
+      "upvotes": 158,
+      "observed_at": "2026-10-29T18:28:40+00:00"
     }
   ]
 }
