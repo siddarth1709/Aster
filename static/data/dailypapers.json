@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Hugging Face Daily Papers",
-  "updated_at": "2026-10-30T18:00:46+00:00",
+  "updated_at": "2026-10-31T17:15:05+00:00",
   "summary_provider": "Raw abstract fallback",
   "papers": [
     {
@@ -69,7 +69,7 @@
       "keywords": [
         "Vision & multimodal"
       ],
-      "upvotes": 259,
+      "upvotes": 260,
       "published_at": "2026-10-21T20:00:00.000Z",
       "hf_url": "https://huggingface.co/papers/2610.31329",
       "arxiv_url": "https://arxiv.org/abs/2610.31329",
@@ -97,6 +97,59 @@
       "upvote_velocity": {
         "change": 1,
         "per_day": 1.0
+      }
+    },
+    {
+      "id": "arxiv:2610.39633",
+      "arxiv_id": "2610.39633",
+      "title": "Intrinsic Distribution Matching",
+      "authors": [
+        "Deyuan Liu",
+        "Yansen Han",
+        "Kaiwen Zheng",
+        "Jun Xie",
+        "Jiacheng Liu",
+        "Zhenglin Cheng",
+        "Peng Sun",
+        "Jintao Zhang",
+        "Jianguo Li",
+        "Tao Lin"
+      ],
+      "abstract": "One-step and few-step text-to-image generation must accurately render the details specified in the prompt despite limited opportunities for refinement. Distribution matching distillation (DMD) uses score differences to bring the generated distribution closer to a reference distribution. Following prior work, we estimate this difference with internal velocity branches, avoiding a separate fake-score network. We ask whether an explicit moment constraint improves this learned score supervision. A decomposition of the reverse-KL field into a Gaussian moment component and a non-Gaussian residual identifies statistics that can be constrained explicitly. We introduce Intrinsic Distribution Matching (IDM), which retains the full DMD correction and matches feature means and per-coordinate standard deviations using the generator's exponential-moving-average (EMA) copy, requiring no external feature encoder. Experiments use full-parameter and low-rank adaptation (LoRA) tuning on Z-Image-Turbo 6B and Qwen-Image 20B. At two network evaluations, IDM reaches 94.25% and 90.20% on Chinese and English LongText-Bench, the highest scores among the compared methods at this budget. Controlled ablations show gains from the added moment loss, while generator EMA features perform competitively with an external DINOv2 encoder across the five reported metrics. Code is available at https://github.com/inclusionAI/IDM.",
+      "category": "AI research",
+      "keywords": [
+        "Vision & multimodal",
+        "Generative models"
+      ],
+      "upvotes": 243,
+      "published_at": "2026-10-28T20:00:00.000Z",
+      "hf_url": "https://huggingface.co/papers/2610.39633",
+      "arxiv_url": "https://arxiv.org/abs/2610.39633",
+      "pdf_url": "https://arxiv.org/pdf/2610.39633",
+      "discussion_url": "https://huggingface.co/papers/2610.39633",
+      "tldr_20_words": "",
+      "summary_25_words": "One-step and few-step text-to-image generation must accurately render the details specified in the prompt despite limited opportunities for refinement. Distribution matching distillation (DMD) uses score differences to bring the generated distribution closer to a reference distribution. Following prior work, we estimate this difference with internal velocity branches, avoiding a separate fake-score network. We ask whether an explicit moment constraint improves this learned score supervision. A decomposition of the reverse-KL field into a Gaussian moment component and a non-Gaussian residual identifies statistics that can be constrained explicitly. We introduce Intrinsic Distribution Matching (IDM), which retains the full DMD correction and matches feature means and per-coordinate standard deviations using the generator's exponential-moving-average (EMA) copy, requiring no external feature encoder. Experiments use full-parameter and low-rank adaptation (LoRA) tuning on Z-Image-Turbo 6B and Qwen-Image 20B. At two network evaluations, IDM reaches 94.25% and 90.20% on Chinese and English LongText-Bench, the highest scores among the compared methods at this budget. Controlled ablations show gains from the added moment loss, while generator EMA features perform competitively with an external DINOv2 encoder across the five reported metrics. Code is available at https://github.com/inclusionAI/IDM.",
+      "breakthrough": "",
+      "example_architecture": "Not specified in the abstract.",
+      "training_strategy": "Not specified in the abstract.",
+      "dataset_curation": "Not specified in the abstract.",
+      "tags": [
+        "Vision & multimodal",
+        "Generative models"
+      ],
+      "reasoning": "Not specified in the abstract.",
+      "state_space_fusion": "Not specified in the abstract.",
+      "key_mechanism": "Not specified in the abstract.",
+      "evaluation": "Not specified in the abstract.",
+      "three_pillars": {
+        "core_breakthrough": "Not specified in the abstract.",
+        "methodological_novelty": "Not specified in the abstract.",
+        "empirical_validation": "Not specified in the abstract."
+      },
+      "summary_source": "abstract",
+      "upvote_velocity": {
+        "change": null,
+        "per_day": null
       }
     },
     {
@@ -336,61 +389,6 @@
       }
     },
     {
-      "id": "arxiv:2506.01844",
-      "arxiv_id": "2506.01844",
-      "title": "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient\n  Robotics",
-      "authors": [
-        "Mustafa Shukor",
-        "Dana Aubakirova",
-        "Francesco Capuano",
-        "Pepijn Kooijmans",
-        "Steven Palma",
-        "Adil Zouitine",
-        "Michel Aractingi",
-        "Caroline Pascal",
-        "Martino Russi",
-        "Andres Marafioti",
-        "Simon Alibert",
-        "Matthieu Cord",
-        "Thomas Wolf",
-        "Remi Cadene"
-      ],
-      "abstract": "Vision-language models (VLMs) pretrained on large-scale multimodal datasets\nencode rich visual and linguistic knowledge, making them a strong foundation\nfor robotics. Rather than training robotic policies from scratch, recent\napproaches adapt VLMs into vision-language-action (VLA) models that enable\nnatural language-driven perception and control. However, existing VLAs are\ntypically massive--often with billions of parameters--leading to high training\ncosts and limited real-world deployability. Moreover, they rely on academic and\nindustrial datasets, overlooking the growing availability of\ncommunity-collected data from affordable robotic platforms. In this work, we\npresent SmolVLA, a small, efficient, and community-driven VLA that drastically\nreduces both training and inference costs, while retaining competitive\nperformance. SmolVLA is designed to be trained on a single GPU and deployed on\nconsumer-grade GPUs or even CPUs. To further improve responsiveness, we\nintroduce an asynchronous inference stack decoupling perception and action\nprediction from action execution, allowing higher control rates with chunked\naction generation. Despite its compact size, SmolVLA achieves performance\ncomparable to VLAs that are 10x larger. We evaluate SmolVLA on a range of both\nsimulated as well as real-world robotic benchmarks and release all code,\npretrained models, and training data.",
-      "category": "AI research",
-      "keywords": [
-        "Vision & multimodal"
-      ],
-      "upvotes": 169,
-      "published_at": "2025-06-02T12:30:19.000Z",
-      "hf_url": "https://huggingface.co/papers/2506.01844",
-      "arxiv_url": "https://arxiv.org/abs/2506.01844",
-      "pdf_url": "https://arxiv.org/pdf/2506.01844",
-      "discussion_url": "https://huggingface.co/papers/2506.01844",
-      "tldr_20_words": "",
-      "summary_25_words": "Vision-language models (VLMs) pretrained on large-scale multimodal datasets\nencode rich visual and linguistic knowledge, making them a strong foundation\nfor robotics. Rather than training robotic policies from scratch, recent\napproaches adapt VLMs into vision-language-action (VLA) models that enable\nnatural language-driven perception and control. However, existing VLAs are\ntypically massive--often with billions of parameters--leading to high training\ncosts and limited real-world deployability. Moreover, they rely on academic and\nindustrial datasets, overlooking the growing availability of\ncommunity-collected data from affordable robotic platforms. In this work, we\npresent SmolVLA, a small, efficient, and community-driven VLA that drastically\nreduces both training and inference costs, while retaining competitive\nperformance. SmolVLA is designed to be trained on a single GPU and deployed on\nconsumer-grade GPUs or even CPUs. To further improve responsiveness, we\nintroduce an asynchronous inference stack decoupling perception and action\nprediction from action execution, allowing higher control rates with chunked\naction generation. Despite its compact size, SmolVLA achieves performance\ncomparable to VLAs that are 10x larger. We evaluate SmolVLA on a range of both\nsimulated as well as real-world robotic benchmarks and release all code,\npretrained models, and training data.",
-      "breakthrough": "",
-      "example_architecture": "Not specified in the abstract.",
-      "training_strategy": "Not specified in the abstract.",
-      "dataset_curation": "Not specified in the abstract.",
-      "tags": [
-        "Vision & multimodal"
-      ],
-      "reasoning": "Not specified in the abstract.",
-      "state_space_fusion": "Not specified in the abstract.",
-      "key_mechanism": "Not specified in the abstract.",
-      "evaluation": "Not specified in the abstract.",
-      "three_pillars": {
-        "core_breakthrough": "Not specified in the abstract.",
-        "methodological_novelty": "Not specified in the abstract.",
-        "empirical_validation": "Not specified in the abstract."
-      },
-      "summary_source": "abstract",
-      "upvote_velocity": {
-        "change": 0,
-        "per_day": 0.0
-      }
-    },
-    {
       "id": "arxiv:2412.20138",
       "arxiv_id": "2412.20138",
       "title": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
@@ -405,7 +403,7 @@
       "keywords": [
         "Agents & tools"
       ],
-      "upvotes": 158,
+      "upvotes": 160,
       "published_at": "2024-12-28T07:54:06.000Z",
       "hf_url": "https://huggingface.co/papers/2412.20138",
       "arxiv_url": "https://arxiv.org/abs/2412.20138",
@@ -431,8 +429,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": 0,
-        "per_day": 0.0
+        "change": 2,
+        "per_day": 2.1
       }
     },
     {
@@ -479,8 +477,8 @@
       },
       "summary_source": "abstract",
       "upvote_velocity": {
-        "change": null,
-        "per_day": null
+        "change": 0,
+        "per_day": 0.0
       }
     }
   ],
@@ -490,15 +488,15 @@
       "count": 6
     },
     {
+      "tag": "Generative models",
+      "count": 3
+    },
+    {
       "tag": "Agents & tools",
       "count": 2
     },
     {
       "tag": "Evaluation",
-      "count": 2
-    },
-    {
-      "tag": "Generative models",
       "count": 2
     },
     {
@@ -510,7 +508,7 @@
     {
       "arxiv_id": "2610.28402",
       "upvotes": 658,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2609.33439",
@@ -519,13 +517,13 @@
     },
     {
       "arxiv_id": "2610.31329",
-      "upvotes": 259,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "upvotes": 260,
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2609.33757",
       "upvotes": 207,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2610.34467",
@@ -540,12 +538,12 @@
     {
       "arxiv_id": "2509.22186",
       "upvotes": 181,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2503.11576",
       "upvotes": 180,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2506.01844",
@@ -554,13 +552,18 @@
     },
     {
       "arxiv_id": "2412.20138",
-      "upvotes": 158,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "upvotes": 160,
+      "observed_at": "2026-10-31T17:15:05+00:00"
     },
     {
       "arxiv_id": "2605.03042",
       "upvotes": 156,
-      "observed_at": "2026-10-30T18:00:46+00:00"
+      "observed_at": "2026-10-31T17:15:05+00:00"
+    },
+    {
+      "arxiv_id": "2610.39633",
+      "upvotes": 243,
+      "observed_at": "2026-10-31T17:15:05+00:00"
     }
   ]
 }
